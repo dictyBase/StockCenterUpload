@@ -1,0 +1,35 @@
+% layout 'plupload',  title => 'dictyBase : Stocks Uploader';
+% include 'tabs';
+
+<div id="upload_tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+		<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+				<a href="#new_upload_tab">Uploader</a>
+		</li>
+		<li class="ui-state-default ui-corner-top">
+				<a href="#list_upload_tab">History</a>
+		</li>
+	</ul>
+	<div id="new_upload_tab" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+		<div id="stockup">
+				<p> Your browser do not support Flash, HTML5, Silverlight or even HTML4 </p>
+		</div>
+	</div>
+	<div id="list_upload_tab" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+		<table id="uploads" class="display">
+			<thead>
+				<tr>
+					<th>File</th>
+					<th>Size</th>
+					<th>Uploaded On</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="5" class="dataTables_empty">Loading data from server</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

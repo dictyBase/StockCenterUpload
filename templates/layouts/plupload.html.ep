@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+  		<title><%= title %></title>
+		<!-- Please don't add "maximum-scale=1" here. It's bad for accessibility. -->
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		<%= stylesheet '/stylesheets/scaffold.css' %>
+
+  		<!-- Load Queue widget CSS -->
+  		<%= stylesheet 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' %>
+
+  		<!-- Load jquery and ui -->
+  		<%= javascript '/javascripts/jquery-1.6.2.min.js' %>
+  		<%= javascript '/javascripts/jquery-ui-1.8.16.custom.min.js' %>
+
+  		<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
+  		<%= javascript '/javascripts/plupload/js/plupload.full.js' %>
+  		<%= javascript '/javascripts/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js' %>
+  		<%= stylesheet '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>
+
+  		<!-- Load dataTables -->
+  		<%= javascript '/javascripts/jquery.dataTables.min.js' %>
+		<%= stylesheet '/stylesheets/dataTables.css' %>
+  		<%= stylesheet '/stylesheets/dataTables_jui.css' %>
+
+		<%= content_for 'upload_datatable' %>
+  	</head>
+
+  	<body>
+		<div id="header">
+			<img src="/images/dictyBase-logo.jpg" alt="dictyBase Logo" />
+  		</div>
+	  	<div id="container">
+	  		<div id="uploader">
+				<%= content %>
+  			</div>
+			<div id="helper">
+				<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+					<p>
+						Help will be here !!!
+					<p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
