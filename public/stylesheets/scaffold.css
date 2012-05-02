@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /*background-color: #D3D3D3;*/ /* Light grey */
+    background: none repeat scroll 0 0 white; /*#333333;*/
+    font-family: "Lucida Fax";
+}
+
+#container {
+	margin: auto;
+	width: 1450px;
+	padding-top: 30px;
+
+}
+
+#header {
+	margin: auto;
+	background-repeat: no-repeat;
+	/*background-image: url(/images/dictyBase-logo.gif);*/
+	padding: 0px;
+}
+
+#uploader {
+	width: 900px;
+	float: left;
+
+}
+
+#helper {
+	width: 525px;
+	float: right;
+	font-size: 15px;
+}
