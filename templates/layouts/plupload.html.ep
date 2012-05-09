@@ -10,7 +10,7 @@
 
 		<%= stylesheet '/stylesheets/scaffold.css' %>
 
-  		<!-- Load Queue widget CSS -->
+  		<!-- Load jQuery theme CSS -->
   		<%= stylesheet 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' %>
 
   		<!-- Load jquery and ui -->

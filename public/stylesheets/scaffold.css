@@ -5,13 +5,13 @@ body {
     /*background-color: #D3D3D3;*/ /* Light grey */
     background: none repeat scroll 0 0 white; /*#333333;*/
     font-family: "Lucida Fax";
+	font-size: 15px;
 }
 
 #container {
 	margin: auto;
 	width: 1450px;
 	padding-top: 30px;
-
 }
 
 #header {
@@ -19,16 +19,16 @@ body {
 	background-repeat: no-repeat;
 	/*background-image: url(/images/dictyBase-logo.gif);*/
 	padding: 0px;
+	border: 1px;
 }
 
 #uploader {
-	width: 900px;
+	width: 850px;
 	float: left;
-
 }
 
 #helper {
-	width: 525px;
+	width: 480px;
 	float: right;
-	font-size: 15px;
+	text-align: left;
 }

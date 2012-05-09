@@ -14,11 +14,11 @@ sub create {
     $sth->execute( $filename, $upload->size );
     my $id = $db->last_insert_id( "", "", "", "" );
     $upload->move_to(
-        $self->app->home->rel_file( "upload/" . $id . "_" . $filename )
+        $self->app->home->rel_file( "uploads/" . $id . "_" . $filename )
     );
     my $headers = $self->res->headers;
     $headers->content_type('text/plain');
-    $headers->location( $self->url_for("upload/$id")->to_abs );
+    $headers->location( $self->url_for("uploads/$id")->to_abs );
     $self->rendered(201);
 }
 
