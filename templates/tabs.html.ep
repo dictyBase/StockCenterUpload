@@ -35,6 +35,11 @@
 				alert('You must at least upload one file');
 			}
 		});
+		
+		uploader.bind('UploadProgress', function(up, file) {
+			$('#' + file.id + " b").html(file.percent + "%");
+		});
+
 
 		/* event binding for enabling the clear upload button  */
 		uploader.bind('FilesAdded', function(up, files) {
