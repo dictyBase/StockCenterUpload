@@ -1,0 +1,14 @@
+
+# OSX crap
+.DS_Store
+
+log/
+uploads/
+db/
+*.sql
+tmp/
+
+# Vim backup files
+*.swp
+*.swn
+*.swo
