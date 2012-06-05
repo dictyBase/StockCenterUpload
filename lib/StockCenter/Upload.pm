@@ -1,10 +1,14 @@
 package StockCenter::Upload;
+
 use Mojo::Base 'Mojolicious::Controller';
 use Data::Dump qw/pp/;
+use StockCenter::Parser;
 
+#
 sub new_record {
 }
 
+# 
 sub create {
 	my ($self) = @_;
     my $db = $self->upload_db;
@@ -14,17 +18,30 @@ sub create {
     $sth->execute( $filename, $upload->size );
     my $id = $db->last_insert_id( "", "", "", "" );
     $upload->move_to(
-        $self->app->home->rel_file( "uploads/" . $id . "_" . $filename )
+		#$self->app->home->rel_file( "uploads/" . $id . "_" . $filename )
+		$self->app->home->rel_file( "uploads/" . $filename )
     );
     my $headers = $self->res->headers;
     $headers->content_type('text/plain');
     $headers->location( $self->url_for("uploads/$id")->to_abs );
-    $self->rendered(201);
+	#$self->rendered(201);
+	my $file = $self->app->home->rel_file("uploads/".$filename);
+	my $parser = StockCenter::Parser->new(file => $file);
+	my $row;
+	print "********** Hello World !!! **********\n";
+	while ($parser->has_next()) {
+		print "*** In the loop ***\n";
+		$row = $parser->next();
+		print $row->stored_by."\n";
+	}
+	$self->rendered(201);
 }
 
+#
 sub index {
 }
 
+# Search local SQLite database for upload history
 sub search {
     my ($self) = @_;
     my $limit  = $self->param('iDisplayLength');
