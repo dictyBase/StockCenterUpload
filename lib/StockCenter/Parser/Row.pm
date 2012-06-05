@@ -18,3 +18,5 @@ has 'num_vials' => (
 	is => 'rw', 
 	isa => 'Int' 
 );
+
+1;
