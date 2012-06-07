@@ -8,6 +8,12 @@ db/
 *.sql
 tmp/
 
+# Build files
+_build/
+Build
+MYMETA.*
+blib/
+
 # Vim backup files
 *.swp
 *.swn
