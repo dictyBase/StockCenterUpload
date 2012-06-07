@@ -11,7 +11,7 @@ has [qw/strain_desc stored_by color location comments/] => (
 
 has 'storage_date' => ( 
 	is => 'rw', 
-	isa => 'Str' 
+	isa => 'StockDate' 
 );
 
 has 'num_vials' => ( 

@@ -7,6 +7,7 @@ uploads/
 db/
 *.sql
 tmp/
+t/data/
 
 # Build files
 _build/
