@@ -19,16 +19,19 @@ has 'file' => (
     isa     => 'Str',
     trigger => sub {
         my ( $self, $file ) = @_;
+
+        print "*** Input file: " . $file . "\n";
         my $workbook = $self->parser->parse($file);
-		for my $sp ( $workbook->worksheets() ) {
-			#my $sp = ($workbook->worksheets())[0];
-			my ($min, $max) = $sp->row_range();
-			print $max."\n";
-			$self->curr_row(0);
-        	$self->row_max($max);
-        	$self->spreadsheet($sp);
-    	}
-	}
+
+        #my @worksheets = $workbook->worksheet(0);
+        my $sp = $workbook->worksheet(0);
+
+        #my $sp         = $worksheets[0];
+        my ( $min, $max ) = $sp->row_range();
+        $self->curr_row(0);
+        $self->row_max($max);
+        $self->spreadsheet($sp);
+    }
 );
 
 # Object of the class Spreadsheet::ParseExcel
@@ -36,7 +39,6 @@ has 'parser' => (
     is      => 'rw',
     isa     => 'Spreadsheet::ParseExcel',
     default => sub {
-        my ($self) = @_;
         return Spreadsheet::ParseExcel->new();
     },
     lazy => 1
@@ -44,10 +46,24 @@ has 'parser' => (
 
 # Spreadsheet headers in a Hash
 has 'headers' => (
-	is => 'ro',
-	isa => 'Hash',
-	default => %header 
-
+    traits  => [qw( Hash )],
+    is      => 'ro',
+    isa     => 'HashRef',
+    default => sub {
+        {   '0' => 'strain_desc',
+            '1' => 'location',
+            '2' => 'stored_by',
+            '3' => 'storage_date',
+            '4' => 'num_vials',
+            '5' => 'color',
+            '6' => 'comments',
+        };
+    },
+    handles => {
+        get      => 'get',
+        is_empty => 'is_empty',
+        count    => 'count',
+    },
 );
 
 # Spreadsheet::ParseExcel object of the file to be read
@@ -59,17 +75,17 @@ has 'spreadsheet' => (
 
 # Counter to maintain position of current row
 has 'curr_row' => (
-    is  => 'rw',
-    isa => 'Int',
-	default => 0
+    is      => 'rw',
+    isa     => 'Int',
+    default => 0
 );
 
 # Maximum number of entries in the excel file
 has 'row_max' => (
     is      => 'rw',
     isa     => 'Int',
-	default => 0,
-	lazy    => 1
+    default => 0,
+    lazy    => 1
 );
 
 # Method to check if next element exists
@@ -77,24 +93,39 @@ sub has_next {
     my ($self) = @_;
     if ( $self->curr_row <= $self->row_max ) {
         $self->curr_row( $self->curr_row + 1 );
-		# print "Yes, there is an entry.\n";
         return 1;
     }
 }
 
 # Method to return next entry as object of StockCenter::Parser::Row
 sub next {
-    my ($self) = @_;
-    my $curr_row = $self->curr_row;
-    my $row = StockCenter::Parser::Row->new();
-	my $spreadsheet = $self->spreadsheet;
-    $row->strain_desc( ($spreadsheet->get_cell( $curr_row, 0 ))->value() );
-    $row->location( ($spreadsheet->get_cell( $curr_row, 1 ))->value() );
-    $row->stored_by( ($spreadsheet->get_cell( $curr_row, 2 ))->value() );
-    $row->storage_date( ($spreadsheet->get_cell( $curr_row, 3 ))->value() );
-    $row->num_vials( ($spreadsheet->get_cell( $curr_row, 4 ))->value() );
-    $row->color( ($spreadsheet->get_cell( $curr_row, 5 ))->value() );
-    $row->comments( ($spreadsheet->get_cell( $curr_row, 6 ))->value() );
+    my ($self)      = @_;
+    my $curr_row    = $self->curr_row;
+    my $row         = StockCenter::Parser::Row->new();
+    my $spreadsheet = $self->spreadsheet;
+
+    #$row->strain_desc( ($spreadsheet->get_cell( $curr_row, 0 ))->value() );
+    #$row->location( ($spreadsheet->get_cell( $curr_row, 1 ))->value() );
+    #$row->stored_by( ($spreadsheet->get_cell( $curr_row, 2 ))->value() );
+    #$row->storage_date( ($spreadsheet->get_cell( $curr_row, 3 ))->value() );
+    #$row->num_vials( ($spreadsheet->get_cell( $curr_row, 4 ))->value() );
+    #$row->color( ($spreadsheet->get_cell( $curr_row, 5 ))->value() );
+    #$row->comments( ($spreadsheet->get_cell( $curr_row, 6 ))->value() );
+    my $H = $self->headers;
+    foreach my $i ( $H->keys() ) {
+        print $i. "\n";
+        my $cell = $spreadsheet->get_cell( $curr_row, $i );
+        print $cell. "\n";
+        unless ($cell) {
+            my $meth_name = $self->header($i);
+            my $value     = $cell->value();
+            if ( $meth_name eq 'num_vials' ) {
+                $value = int($value);
+            }
+            $row->$meth_name($value);
+            print $value . "\n";
+        }
+    }
     return $row;
 }
 
