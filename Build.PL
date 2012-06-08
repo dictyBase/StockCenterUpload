@@ -8,7 +8,7 @@ my %module_build_args = (
     "build_requires"     => { "Module::Build" => "0.3601" },
     "configure_requires" => { "Module::Build" => "0.3601" },
     "dist_abstract" => "Mojolicious application for StockCenter data upload",
-    "dist_author"   => [""],
+    "dist_author"   => ["Yogesh Pandit"],
     "dist_name"     => "StockCenter",
     "dist_version"  => "0.1",
     "license"       => "perl",
