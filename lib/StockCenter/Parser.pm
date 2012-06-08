@@ -8,25 +8,22 @@ package StockCenter::Parser;
 =cut
 
 use strict;
+use namespace::autoclean;
 use Moose;
 use Spreadsheet::ParseExcel;
 use StockCenter::Parser::Row;
-use namespace::autoclean;
 
 # Excel file to be read
 has 'file' => (
     is      => 'rw',
     isa     => 'Str',
     trigger => sub {
-        my ( $self, $file ) = @_;
-
-        print "*** Input file: " . $file . "\n";
+        my ( $self, $file) = @_;
         my $workbook = $self->parser->parse($file);
-
-        #my @worksheets = $workbook->worksheet(0);
+        if (!$workbook) {
+        	die $self->parser->error, " :problem\n";
+        }
         my $sp = $workbook->worksheet(0);
-
-        #my $sp         = $worksheets[0];
         my ( $min, $max ) = $sp->row_range();
         $self->curr_row(0);
         $self->row_max($max);
