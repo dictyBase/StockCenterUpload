@@ -3,6 +3,7 @@ use Test::More qw/no_plan/;
 use Test::Moose;
 use Test::Exception;
 use FindBin qw/$Bin/;
+<<<<<<< HEAD
 use File::Spec::Functions;
 
 BEGIN { use_ok('StockCenter::Parser'); }
