@@ -18,7 +18,8 @@ my %module_build_args = (
     "requires"             => {
         "Moose"                   => "2.0602",
         "Mojolicious"             => "2.51",
-        "Spreadsheet::ParseExcel" => "0.59"
+        "Spreadsheet::ParseExcel" => "0.59", 
+        "namespace::autoclean" => "0.13"
     },
     "script_files" => []
 );
