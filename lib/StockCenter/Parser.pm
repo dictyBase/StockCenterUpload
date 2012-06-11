@@ -18,10 +18,10 @@ has 'file' => (
     is      => 'rw',
     isa     => 'Str',
     trigger => sub {
-        my ( $self, $file) = @_;
+        my ( $self, $file ) = @_;
         my $workbook = $self->parser->parse($file);
-        if (!$workbook) {
-        	die $self->parser->error, " :problem\n";
+        if ( !$workbook ) {
+            die $self->parser->error, " :problem\n";
         }
         my $sp = $workbook->worksheet(0);
         my ( $min, $max ) = $sp->row_range();
@@ -43,7 +43,7 @@ has 'parser' => (
 
 # Spreadsheet headers in a Hash
 has 'headers' => (
-    traits  => [qw( Hash )],
+    traits  => ['Hash'],
     is      => 'ro',
     isa     => 'HashRef',
     default => sub {
@@ -53,13 +53,14 @@ has 'headers' => (
             '3' => 'storage_date',
             '4' => 'num_vials',
             '5' => 'color',
-            '6' => 'comments',
+            '6' => 'comments'
         };
     },
     handles => {
-        get      => 'get',
-        is_empty => 'is_empty',
-        count    => 'count',
+        get_value   => 'get',
+        is_empty    => 'is_empty',
+        count       => 'count',
+        header_keys => 'keys'
     },
 );
 
@@ -101,27 +102,15 @@ sub next {
     my $row         = StockCenter::Parser::Row->new();
     my $spreadsheet = $self->spreadsheet;
 
-    #$row->strain_desc( ($spreadsheet->get_cell( $curr_row, 0 ))->value() );
-    #$row->location( ($spreadsheet->get_cell( $curr_row, 1 ))->value() );
-    #$row->stored_by( ($spreadsheet->get_cell( $curr_row, 2 ))->value() );
-    #$row->storage_date( ($spreadsheet->get_cell( $curr_row, 3 ))->value() );
-    #$row->num_vials( ($spreadsheet->get_cell( $curr_row, 4 ))->value() );
-    #$row->color( ($spreadsheet->get_cell( $curr_row, 5 ))->value() );
-    #$row->comments( ($spreadsheet->get_cell( $curr_row, 6 ))->value() );
-    my $H = $self->headers;
-    foreach my $i ( $H->keys() ) {
-        print $i. "\n";
-        my $cell = $spreadsheet->get_cell( $curr_row, $i );
-        print $cell. "\n";
-        unless ($cell) {
-            my $meth_name = $self->header($i);
-            my $value     = $cell->value();
-            if ( $meth_name eq 'num_vials' ) {
-                $value = int($value);
-            }
-            $row->$meth_name($value);
-            print $value . "\n";
+    for my $key ( $self->header_keys ) {
+        my $cell = $spreadsheet->get_cell( $curr_row, $key );
+        next unless ($cell);
+        my $meth_name = $self->get_value($key);
+        my $value     = $cell->value();
+        if ( $meth_name eq 'num_vials' ) {
+            $value = int($value);
         }
+        $row->$meth_name($value);
     }
     return $row;
 }
