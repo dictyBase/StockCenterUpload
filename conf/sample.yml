@@ -1,0 +1,5 @@
+[database]
+dsn = "dbi:SQLite:<path>/<filename>.db"
+user = 
+pass = 
+opt = LongTruncOk
