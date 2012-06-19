@@ -15,6 +15,11 @@ Build
 MYMETA.*
 blib/
 
+# Config files
+development.yml
+staging.yml
+production.yml
+
 # Vim backup files
 *.swp
 *.swn

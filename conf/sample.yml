@@ -1,5 +1,4 @@
-[database]
-dsn = "dbi:SQLite:<path>/<filename>.db"
-user = 
-pass = 
-opt = LongTruncOk
+adapter: "DataAdapter::?" # (SQLite || Oracle)
+dsn : "dbi:SQLite:<path-to-file>.db" # (|| dbi:Oracle)
+user :
+password :
