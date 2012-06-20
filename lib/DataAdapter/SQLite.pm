@@ -6,28 +6,36 @@ use warnings;
 
 use Moose;
 
-has [qw/dsn user password/] => (
+has 'dsn' => (
     is            => 'rw',
     isa           => 'Str',
     documentation => 'Database attributes'
 );
 
+has [qw/user password/] => (
+    is => 'rw',
+    default => undef
+);
+
 has 'resultset' => (
-    is  => 'rw',
-    isa => 'DBIx::Class::ResultSet'
+    is      => 'rw',
+    isa     => 'DBIx::Class::ResultSet',
+    lazy    => 1,
+    default => sub {
+        my ($self) = @_;
+        return $self->schema->resultset('StockCenter');
+    }
 );
 
 has 'schema' => (
     is      => 'rw',
     isa     => 'DBIx::Class::Schema',
-    builder => '_build_schema'
+    lazy    => 1,
+    default => sub {
+        my ($self) = @_;
+        return DBCon::Uploader->connect( $self->dsn );
+    }
 );
-
-sub _build_schema {
-    my ($self) = @_;
-    $self->schema    = DBCon::Uploader->connect( $self->dsn );
-    $self->resultset = $self->schema->resultset('StockCenter');
-}
 
 sub insert {
     my ( $self, $row ) = @_;

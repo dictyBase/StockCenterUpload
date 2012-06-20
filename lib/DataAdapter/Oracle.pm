@@ -14,7 +14,6 @@ has [qw/dsn user password/] => (
 has 'attribute' => (
     is            => 'rw',
     isa           => 'HashRef',
-    traits        => [qw/Getopt/],
     documentation => 'Additional database attribute',
     lazy          => 1,
     default       => sub {
@@ -22,21 +21,29 @@ has 'attribute' => (
     }
 );
 
+has 'resultset' => (
+    is      => 'rw',
+    isa     => 'DBIx::Class::ResultSet',
+    lazy    => 1,
+    default => sub {
+        my ($self) = @_;
+        return $self->schema->resultset('StockCenterInventory');
+    }
+);
+
 has 'schema' => (
     is      => 'rw',
     isa     => 'DBIx::Class::Schema',
-    builder => '_build_schema'
+    lazy    => 1,
+    default => sub {
+        my ($self) = @_;
+        return MOD::SGD->connect( $self->dsn, $self->user, $self->password );
+    }
 );
 
-sub _build_schema {
-    my ($self) = @_;
-    $self->schema
-        = MOD::SGD->connect( $self->dsn, $self->user, $self->password );
-    $self->resultset = $self->schema->resultset('StockCenterInventory');
-}
-
 sub insert {
-	my ($self, $row) = @_;
+    my ( $self, $row ) = @_;
+    return;
 }
 
 1;

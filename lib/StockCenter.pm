@@ -26,9 +26,11 @@ sub startup {
             class     => 'YAML::Tiny'
         }
     );
+	$self->app->log->debug($self->config->{dsn});
+	$self->app->log->debug($self->config->{adapter});
 
     $self->plugin(
-        'adapter',
+		'StockCenter::Plugin::Adapter',
         {   adapter  => $self->config->{adapter},
             dsn      => $self->config->{dsn},
             user     => $self->config->{user},
