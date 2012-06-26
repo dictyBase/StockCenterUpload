@@ -1,26 +1,12 @@
 
-# OSX crap
-.DS_Store
-
-log/
 uploads/
 db/
 *.sql
 tmp/
-t/data/
-
-# Build files
-_build/
-Build
-MYMETA.*
-blib/
 
 # Config files
 development.yml
 staging.yml
 production.yml
+test.yaml
 
-# Vim backup files
-*.swp
-*.swn
-*.swo
