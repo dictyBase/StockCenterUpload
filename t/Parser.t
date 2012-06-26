@@ -7,7 +7,7 @@ use File::Spec::Functions;
 
 BEGIN { use_ok('StockCenter::Parser'); }
 
-my $file = catfile( $Bin, 'data', 'cox_strains.xls' );
+my $file = catfile( $Bin, 'data', 'sample.xls' );
 my $parser = StockCenter::Parser->new( file => $file );
 isa_ok( $parser, 'StockCenter::Parser' );
 is( $parser->curr_row, 0,  "Current row initialized" );

@@ -1,0 +1,2 @@
+schema_class : 'DBCon::Uploader'
+resultsets : ['StockCenter']
