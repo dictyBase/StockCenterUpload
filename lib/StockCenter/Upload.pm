@@ -23,25 +23,16 @@ sub create {
     $sth->execute( $filename, $upload->size );
     my $id = $db->last_insert_id( "", "", "", "" );
     $upload->move_to(
-
-        $self->app->home->rel_file( "uploads/" . $id . "_" . $filename )
-
-            #$self->app->home->rel_file( "uploads/" . $filename )
-    );
-	#$self->app->log->debug("Moved the file to the server");
+        $self->app->home->rel_file( "uploads/" . $id . "_" . $filename ) );
     my $headers = $self->res->headers;
     $headers->content_type('text/plain');
     $headers->location( $self->url_for("uploads/$id")->to_abs );
 
     # Loading the uploaded file to database
-    #$my $dh = $self->dh;
-	#$self->app->log->debug("Going to read the uploaded file");
     my $file
         = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
     my $parser = StockCenter::Parser->new( file => $file );
-	#$self->app->log->debug("Reading the uploaded file");
     my $adapter = $self->adapter;
-	$self->app->log->debug("Connected to the DataAdapter");
     while ( $parser->has_next() ) {
         my $row = $parser->next();
         $adapter->insert($row);
