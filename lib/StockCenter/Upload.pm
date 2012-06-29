@@ -31,10 +31,22 @@ sub create {
     # Loading the uploaded file to database
     my $file
         = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
-    my $parser = StockCenter::Parser->new( file => $file );
-    my $adapter = $self->adapter;
+    my $parser     = StockCenter::Parser->new( file => $file );
+	my $adapter    = $self->adapter;
+	#$self->app->log->debug('### '.ref($adapter->schema).' ###');
+    my $strain_row = $adapter->schema->resultset('StockCenter')->search( { strain_name => 'V10490' },
+        { rows => 1 } )->single;
+	if ($strain_row) {
+		$self->app->log->debug("^^^ We have trouble ^^^");
+	}
+    $self->app->log->debug( '***' . $strain_row->id );
+    $self->app->log->debug(
+        '***** Insert; Upload; ' . ref($adapter) . ' *****' );
     while ( $parser->has_next() ) {
         my $row = $parser->next();
+        $self->app->log->debug(
+            '*****  Inserting row using ' . ref($adapter) . ' *****' );
+        $self->app->log->debug( '***' . $row->strain_desc . '***' );
         $adapter->insert($row);
     }
     $self->rendered(201);
