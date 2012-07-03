@@ -69,11 +69,15 @@ sub insert {
         }
     );
 
+    my $storage_date =
+        $row->storage_date->day . '-'
+      . uc $row->storage_date->month_abbr . '-'
+      . $row->storage_date->year;
     my $data = $dual_rs->next;
     push @$inventory_data,
       [
         $data->get_column('id'), $strain_row->id,
-        $row->location,          $row->storage_date,
+        $row->location,          $storage_date,
         $row->num_vials,         $row->color,
         $row->stored_by,         'CGM_DDB_KERRY',
         $row->comments

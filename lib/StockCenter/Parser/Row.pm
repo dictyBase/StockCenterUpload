@@ -4,18 +4,15 @@ package StockCenter::Parser::Row;
 use strict;
 use Moose;
 use Moose::Util::TypeConstraints;
-use DateTime::Format::Strptime;
+use DateTime::Format::Oracle;
 
-subtype 'StockCenter::StorageDate' => as 'DateTime::Format::Strptime';
+subtype 'StockCenter::StorageDate' => as class_type('DateTime');
 coerce 'StockCenter::StorageDate' => from 'Str' => via {
-    print "*** $_ ***\n";
-
-    #my ( $y, $m, $d ) = split /-/, $_;
-    my $dt = DateTime::Format::Strptime->new(
+    my ( $y, $m, $d ) = split /-/, $_;
+    return DateTime::Format::Strptime->new(
         pattern  => '%Y-%m-%d',
         on_error => 'croak'
-    )->parse_datetime($_);
-    return $dt;
+    )->parse_datetime( DateTime->new( year => $y, month => $m, day => $d ) );
 };
 
 has [qw/strain_desc stored_by color location comments/] => (
