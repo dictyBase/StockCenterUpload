@@ -16,8 +16,8 @@ sub new_record {
 sub create {
     my ($self) = @_;
     my $db = $self->upload_db;
-    my $sth
-        = $db->prepare("INSERT INTO uploaded_file(name, size) VALUES(?, ?)");
+    my $sth =
+      $db->prepare("INSERT INTO uploaded_file(name, size) VALUES(?, ?)");
     my ($upload) = @{ $self->req->uploads };
     my $filename = $upload->filename;
     $sth->execute( $filename, $upload->size );
@@ -28,25 +28,11 @@ sub create {
     $headers->content_type('text/plain');
     $headers->location( $self->url_for("uploads/$id")->to_abs );
 
-    # Loading the uploaded file to database
-    my $file
-        = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
-    my $parser     = StockCenter::Parser->new( file => $file );
-	my $adapter    = $self->adapter;
-	#$self->app->log->debug('### '.ref($adapter->schema).' ###');
-    my $strain_row = $adapter->schema->resultset('StockCenter')->search( { strain_name => 'V10490' },
-        { rows => 1 } )->single;
-	if ($strain_row) {
-		$self->app->log->debug("^^^ We have trouble ^^^");
-	}
-    $self->app->log->debug( '***' . $strain_row->id );
-    $self->app->log->debug(
-        '***** Insert; Upload; ' . ref($adapter) . ' *****' );
+    my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
+    my $parser  = StockCenter::Parser->new( file => $file );
+    my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
         my $row = $parser->next();
-        $self->app->log->debug(
-            '*****  Inserting row using ' . ref($adapter) . ' *****' );
-        $self->app->log->debug( '***' . $row->strain_desc . '***' );
         $adapter->insert($row);
     }
     $self->rendered(201);
@@ -63,16 +49,16 @@ sub search {
     my $limit  = $self->param('iDisplayLength');
     my $offset = $self->param('iDisplayStart');
     my $db     = $self->upload_db;
-    my $sth
-        = $db->prepare(
+    my $sth    = $db->prepare(
         "SELECT name, size, created_at FROM uploaded_file LIMIT $offset,$limit"
-        );
+    );
     my $cth     = $db->prepare("SELECT count(id) FROM uploaded_file");
     my ($total) = $db->selectrow_array($cth);
     my $arr     = $db->selectall_arrayref($sth);
 
     $self->render_json(
-        {   sEcho                => $self->param('sEcho'),
+        {
+            sEcho                => $self->param('sEcho'),
             iTotalRecords        => $total,
             iTotalDisplayRecords => $total,
             aaData               => $arr

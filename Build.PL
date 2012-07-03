@@ -18,8 +18,19 @@ my %module_build_args = (
     "requires"             => {
         "Moose"                   => "2.0602",
         "Mojolicious"             => "2.51",
+		"Mojolicious::Plugin::Database" => "1.05",
+		"Mojolicious::Plugin::YamlConfig" => "0.1.5",
         "Spreadsheet::ParseExcel" => "0.59", 
-        "namespace::autoclean" => "0.13"
+        "namespace::autoclean" => "0.13",
+		"DBD::Oracle" => "1.44",
+		"DBI" => "1.622",
+		"DBIx::Class" => "0.08196",
+		"YAML::Tiny" => "1.51",
+		"DateTime::Format::Strptime" => "0.74",
+		"Data::Dump" => "1.21",
+		"Math::Base36" => "0.09",
+		"Math::BigInt" => "1.99"
+
     },
     "script_files" => []
 );
