@@ -3,6 +3,7 @@ uploads/
 db/
 *.sql
 tmp/
+sqlnet.log
 
 # Config files
 development.yml
@@ -10,3 +11,5 @@ staging.yml
 production.yml
 test.yaml
 
+local/
+.carton/

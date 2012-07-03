@@ -957,6 +957,50 @@
          "target" : "Class::C3::Componentised",
          "version" : "1.001000"
       },
+      "Class::Factory::Util" : {
+         "dist" : "Class-Factory-Util-1.7",
+         "mymeta" : {
+            "abstract" : "Provide utility methods for factory classes",
+            "author" : [
+               "Dave Rolsky, <autarch@urth.org>.",
+               "Removed from Alzabo and packaged by Terrence Brannon,\n<tbone@cpan.org>."
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Build version 0.4001, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Class-Factory-Util",
+            "prereqs" : {},
+            "provides" : {
+               "Class::Factory::Util" : {
+                  "file" : "lib/Class/Factory/Util.pm",
+                  "version" : "1.7"
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ]
+            },
+            "version" : "1.7"
+         },
+         "name" : "Class::Factory::Util",
+         "pathname" : "D/DR/DROLSKY/Class-Factory-Util-1.7.tar.gz",
+         "provides" : {
+            "Class::Factory::Util" : {
+               "file" : "Class/Factory/Util.pm",
+               "version" : "1.7"
+            }
+         },
+         "target" : "Class::Factory::Util",
+         "version" : "1.7"
+      },
       "Class::Inspector" : {
          "dist" : "Class-Inspector-1.27",
          "mymeta" : {
@@ -1457,6 +1501,58 @@
          },
          "target" : "Context::Preserve",
          "version" : "0.01"
+      },
+      "Convert::NLS_DATE_FORMAT" : {
+         "dist" : "Convert-NLS_DATE_FORMAT-0.05",
+         "mymeta" : {
+            "abstract" : "Convert Oracle NLS_DATE_FORMAT <-> strftime Format Strings",
+            "author" : [
+               "Nathan Gray <kolibrie@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.56, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Convert-NLS_DATE_FORMAT",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {}
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.05"
+         },
+         "name" : "Convert::NLS_DATE_FORMAT",
+         "pathname" : "K/KO/KOLIBRIE/Convert-NLS_DATE_FORMAT-0.05.tar.gz",
+         "provides" : {
+            "Convert::NLS_DATE_FORMAT" : {
+               "file" : "Convert/NLS_DATE_FORMAT.pm",
+               "version" : "0.05"
+            }
+         },
+         "target" : "Convert::NLS_DATE_FORMAT",
+         "version" : "0.05"
       },
       "Crypt::RC4" : {
          "dist" : "Crypt-RC4-2.02",
@@ -3076,6 +3172,175 @@
          },
          "target" : "DateTime",
          "version" : "0.75"
+      },
+      "DateTime::Format::Builder" : {
+         "dist" : "DateTime-Format-Builder-0.80",
+         "mymeta" : {
+            "abstract" : "Create DateTime parser classes and objects.",
+            "author" : [
+               "Originally written by Iain Truskett <spoon@cpan.org>, who died on\nDecember 29, 2003.",
+               "Maintained by Dave Rolsky <autarch@urth.org>."
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Build version 0.4001, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "DateTime-Format-Builder",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Module::Build" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "Module::Build" : "0.36"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Class::Factory::Util" : "1.6",
+                     "DateTime" : "0.12",
+                     "DateTime::Format::Strptime" : "1.04",
+                     "Params::Validate" : "0.72",
+                     "Task::Weaken" : 0
+                  }
+               }
+            },
+            "provides" : {
+               "DateTime::Format::Builder" : {
+                  "file" : "lib/DateTime/Format/Builder.pm",
+                  "version" : "0.80"
+               },
+               "DateTime::Format::Builder::Parser" : {
+                  "file" : "lib/DateTime/Format/Builder/Parser.pm",
+                  "version" : "0.77"
+               },
+               "DateTime::Format::Builder::Parser::Dispatch" : {
+                  "file" : "lib/DateTime/Format/Builder/Parser/Dispatch.pm",
+                  "version" : "0.78"
+               },
+               "DateTime::Format::Builder::Parser::Quick" : {
+                  "file" : "lib/DateTime/Format/Builder/Parser/Quick.pm",
+                  "version" : "0.77"
+               },
+               "DateTime::Format::Builder::Parser::Regex" : {
+                  "file" : "lib/DateTime/Format/Builder/Parser/Regex.pm",
+                  "version" : "0.77"
+               },
+               "DateTime::Format::Builder::Parser::Strptime" : {
+                  "file" : "lib/DateTime/Format/Builder/Parser/Strptime.pm",
+                  "version" : "0.77"
+               },
+               "DateTime::Format::Builder::Parser::generic" : {
+                  "file" : "lib/DateTime/Format/Builder/Parser/generic.pm",
+                  "version" : "0.77"
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ]
+            },
+            "version" : "0.80"
+         },
+         "name" : "DateTime::Format::Builder",
+         "pathname" : "D/DR/DROLSKY/DateTime-Format-Builder-0.80.tar.gz",
+         "provides" : {
+            "DateTime::Format::Builder" : {
+               "file" : "DateTime/Format/Builder.pm",
+               "version" : "0.80"
+            },
+            "DateTime::Format::Builder::Parser" : {
+               "file" : "DateTime/Format/Builder/Parser.pm",
+               "version" : "0.77"
+            },
+            "DateTime::Format::Builder::Parser::Dispatch" : {
+               "file" : "DateTime/Format/Builder/Parser/Dispatch.pm",
+               "version" : "0.78"
+            },
+            "DateTime::Format::Builder::Parser::Quick" : {
+               "file" : "DateTime/Format/Builder/Parser/Quick.pm",
+               "version" : "0.77"
+            },
+            "DateTime::Format::Builder::Parser::Regex" : {
+               "file" : "DateTime/Format/Builder/Parser/Regex.pm",
+               "version" : "0.77"
+            },
+            "DateTime::Format::Builder::Parser::Strptime" : {
+               "file" : "DateTime/Format/Builder/Parser/Strptime.pm",
+               "version" : "0.77"
+            },
+            "DateTime::Format::Builder::Parser::generic" : {
+               "file" : "DateTime/Format/Builder/Parser/generic.pm",
+               "version" : "0.77"
+            }
+         },
+         "target" : "DateTime::Format::Builder",
+         "version" : "0.80"
+      },
+      "DateTime::Format::Oracle" : {
+         "dist" : "DateTime-Format-Oracle-0.06",
+         "mymeta" : {
+            "abstract" : "Parse and format Oracle dates and timestamps",
+            "author" : [
+               "Nathan Gray <kolibrie@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.56, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "DateTime-Format-Oracle",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Convert::NLS_DATE_FORMAT" : "0.03",
+                     "DateTime" : 0,
+                     "DateTime::Format::Builder" : 0,
+                     "Test::More" : 0
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.06"
+         },
+         "name" : "DateTime::Format::Oracle",
+         "pathname" : "K/KO/KOLIBRIE/DateTime-Format-Oracle-0.06.tar.gz",
+         "provides" : {
+            "DateTime::Format::Oracle" : {
+               "file" : "DateTime/Format/Oracle.pm",
+               "version" : "0.06"
+            }
+         },
+         "target" : "DateTime::Format::Oracle",
+         "version" : "0.06"
       },
       "DateTime::Format::Strptime" : {
          "dist" : "DateTime-Format-Strptime-1.51",
@@ -10022,6 +10287,73 @@
          },
          "target" : "Math::Base36",
          "version" : "0.09"
+      },
+      "Math::BigInt" : {
+         "dist" : "Math-BigInt-1.997",
+         "mymeta" : {
+            "abstract" : "Arbitrary size integer/float math package",
+            "author" : [
+               "Original code by Mark Biggar, overloaded interface by Ilya Zakharevich., Tels <nospam-abuse@bloodgate.com>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.59, CPAN::Meta::Converter version 2.112150, CPAN::Meta::Converter version 2.120921",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Math-BigInt",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.42",
+                     "Test::More" : "0.62"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "perl" : "5.006002"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "1.997"
+         },
+         "name" : "Math::BigInt",
+         "pathname" : "P/PJ/PJACKLAM/Math-BigInt-1.997.tar.gz",
+         "provides" : {
+            "Math::BigFloat" : {
+               "file" : "Math/BigFloat.pm",
+               "version" : "1.997"
+            },
+            "Math::BigInt" : {
+               "file" : "Math/BigInt.pm",
+               "version" : "1.997"
+            },
+            "Math::BigInt::Calc" : {
+               "file" : "Math/BigInt/Calc.pm",
+               "version" : "1.997"
+            },
+            "Math::BigInt::CalcEmu" : {
+               "file" : "Math/BigInt/CalcEmu.pm",
+               "version" : "1.997"
+            }
+         },
+         "target" : "Math::BigInt",
+         "version" : "1.997"
       },
       "Math::Round" : {
          "dist" : "Math-Round-0.06",
