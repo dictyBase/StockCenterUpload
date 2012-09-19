@@ -8,24 +8,24 @@
 		<!-- Please don't add "maximum-scale=1" here. It's bad for accessibility. -->
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-		<%= stylesheet '/stylesheets/scaffold.css' %>
+		<%= stylesheet_link_tag '/scaffold.css' %>
 
   		<!-- Load jQuery theme CSS -->
-  		<%= stylesheet 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css' %>
+  		<%= stylesheet_link_tag '/smoothness/jquery-ui.css' %>
 
   		<!-- Load jquery and ui -->
-  		<%= javascript '/javascripts/jquery-1.6.2.min.js' %>
-  		<%= javascript '/javascripts/jquery-ui-1.8.16.custom.min.js' %>
+  		<%= javascript_include_tag '/jquery-1.6.2.min.js' %>
+  		<%= javascript_include_tag '/jquery-ui-1.8.16.custom.min.js' %>
 
   		<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
-  		<%= javascript '/javascripts/plupload/js/plupload.full.js' %>
-  		<%= javascript '/javascripts/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js' %>
+  		<%= javascript_include_tag '/plupload/js/plupload.full.js' %>
+  		<%= javascript_include_tag '/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js' %>
   		<%= stylesheet '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>
 
   		<!-- Load dataTables -->
-  		<%= javascript '/javascripts/jquery.dataTables.min.js' %>
-		<%= stylesheet '/stylesheets/dataTables.css' %>
-  		<%= stylesheet '/stylesheets/dataTables_jui.css' %>
+  		<%= javascript_include_tag '/jquery.dataTables.min.js' %>
+		<%= stylesheet_link_tag '/dataTables.css' %>
+  		<%= stylesheet_link_tag '/dataTables-jui.css' %>
 
 		<%= content_for 'upload_datatable' %>
   	</head>

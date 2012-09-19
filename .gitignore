@@ -9,7 +9,8 @@ sqlnet.log
 development.yml
 staging.yml
 production.yml
-test.yaml
+test.yml
 
 local/
 .carton/
+Rexfile
