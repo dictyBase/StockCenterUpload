@@ -37,6 +37,7 @@ sub startup {
             password => $self->config->{password}
         }
     );
+	$self->plugin('asset_tag_helpers');
 
     # Routes
     my $r = $self->routes;
