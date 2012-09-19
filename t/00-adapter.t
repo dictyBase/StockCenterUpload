@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Test::More qw/no_plan/;
-use Test::DBIx::Class;
+use Test::DBIx::Class -config_path => [qw(t etc schema)];
 use Mojolicious::Lite;
 use Test::Mojo;
 use DBCon::Uploader;
@@ -20,7 +20,7 @@ diag(
 $ENV{MOJO_MODE} = "test";
 diag("Entering $ENV{MOJO_MODE} mode");
 
-my $dbname = "data/test.db";
+my $dbname = "data/StockCenter_test.db";
 
 my $t = Test::Mojo->new('StockCenter');
 $t->app->plugin(
@@ -49,5 +49,3 @@ fixtures_ok [
     'Installed some basic fixtures';
 
 ok ResultSet('StockCenter'), "Yeah, some data has been entered.";
-
-1;

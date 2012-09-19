@@ -6,7 +6,7 @@ use Test::More qw/no_plan/;
 use Mojolicious::Lite;
 use Test::Mojo;
 use StockCenter::Parser;
-use Test::DBIx::Class;
+use Test::DBIx::Class -config_path => [qw(t etc schema)];
 
 #use DBCon::Uploader;
 #use Mojo::Asset::File;
@@ -14,12 +14,12 @@ use Test::DBIx::Class;
 $ENV{MOJO_MODE} = "test";
 diag("Entering $ENV{MOJO_MODE} mode");
 
-my $dbname = "data/test.db";
+my $dbname = "data/StockCenter_test.db";
 my $file
-    = "/Users/yogesh/Projects/dictyBase/StockCenter/stock_center_webapp/t/data/sample.xls";
+    = "/home/yogesh/Projects/dictyBase/StockCenterUpload/t/data/sample.xls";
 
 my $t = Test::Mojo->new('StockCenter');
-$t->app->log->level('fatal');
+$t->app->log->level('error');
 
 $t->get_ok('/uploads/new');
 
@@ -36,8 +36,8 @@ isa_ok( $t->app->adapter->resultset, 'DBIx::Class::ResultSet' );
 fixtures_ok my $upload_test = sub {
     my $self = shift;
 
-    #diag( ref( $self->$t->app->adapter->resultset ) );
-    my $u_rs = $self->$t->adapter->resultset;
+    #diag( ref( $t->app->adapter->resultset ) );
+    my $u_rs = $t->adapter->resultset;
     my $parser = StockCenter::Parer->new( file => $self->$file );
     while ( $parser->has_next() ) {
         my $row = $parser->next();

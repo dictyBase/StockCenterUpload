@@ -1,0 +1,6 @@
+[submodule "tasks"]
+	path = tasks
+	url = https://github.com/dictyBase/deploy-task.git
+[submodule "public"]
+	path = public
+	url = https://github.com/dictyBase/dictyAssets.git
