@@ -1,0 +1,4 @@
+adapter: "DataAdapter::Oracle" 
+dsn : #"dbi:SQLite:<path-to-file>.db" 
+user :
+password :
