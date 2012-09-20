@@ -1,0 +1,4 @@
+adapter: "DataAdapter::?" # (SQLite || Oracle)
+dsn : "dbi:SQLite:<path-to-file>.db" # (|| dbi:Oracle)
+user :
+password :
