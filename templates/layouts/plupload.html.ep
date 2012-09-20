@@ -8,14 +8,14 @@
 		<!-- Please don't add "maximum-scale=1" here. It's bad for accessibility. -->
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-		<%= stylesheet_link_tag '/scaffold.css' %>
+		<%= stylesheet_link_tag '/stockcenterupload.css' %>
 
   		<!-- Load jQuery theme CSS -->
   		<%= stylesheet_link_tag '/smoothness/jquery-ui.css' %>
 
   		<!-- Load jquery and ui -->
-  		<%= javascript_include_tag '/jquery-1.6.2.min.js' %>
-  		<%= javascript_include_tag '/jquery-ui-1.8.16.custom.min.js' %>
+  		<%= javascript_include_tag '/plupload/jquery-1.6.2.min.js' %>
+  		<%= javascript_include_tag '/plupload/jquery-ui-1.8.16.custom.min.js' %>
 
   		<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
   		<%= javascript_include_tag '/plupload/js/plupload.full.js' %>
