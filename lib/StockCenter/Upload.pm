@@ -21,15 +21,18 @@ sub create {
     my $filename = $upload->filename;
     $sth->execute( $filename, $upload->size );
     my $id = $db->last_insert_id( "", "", "", "" );
-    my $temp_file = File::Temp->new(SUFFIX => '.dat');
+
+    my $temp_file = File::Temp->new( SUFFIX => '.dat' );
     $upload->move_to($temp_file);
+
 	#$upload->move_to($self->app->home->rel_file( "uploads/" . $id . "_" . $filename ) );
     my $headers = $self->res->headers;
     $headers->content_type('text/plain');
-	#$headers->location( $self->url_for("uploads/$id")->to_abs );
+    #$headers->location( $self->url_for("uploads/$id")->to_abs );
 
-	my $file = $temp_file->filename;
-	# my $file  = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
+    my $file = $temp_file->filename;
+	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
+
     my $parser = StockCenter::Parser->new( file => $file );
     my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
@@ -38,6 +41,7 @@ sub create {
     }
     $self->rendered(201);
     return;
+
 }
 
 sub index {

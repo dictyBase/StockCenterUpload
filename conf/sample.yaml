@@ -2,3 +2,4 @@ adapter: "DataAdapter::Oracle"
 #dsn : 
 #user : 
 #password : 
+

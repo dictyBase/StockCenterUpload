@@ -4,7 +4,7 @@ package StockCenter::Parser::Row;
 use strict;
 use Moose;
 use Moose::Util::TypeConstraints;
-use DateTime::Format::Oracle;
+use DateTime::Format::Strptime;
 
 subtype 'StockCenter::StorageDate' => as class_type('DateTime');
 coerce 'StockCenter::StorageDate' => from 'Str' => via {
