@@ -5,12 +5,16 @@ db/
 tmp/
 sqlnet.log
 
-# Config files
-development.yml
-staging.yml
-production.yml
-test.yml
-
+# Exclude lib folders
 local/
 .carton/
 Rexfile
+
+# Ignore conf files
+*.conf
+*.yaml
+
+# Don't ignore these files
+!sample.yaml
+!fcgi_conf.yaml
+!apache.conf

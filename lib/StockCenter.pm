@@ -21,7 +21,7 @@ sub startup {
     my $mode = defined $ENV{MOJO_MODE} ? $ENV{MOJO_MODE} : 'development';
     $self->plugin(
         'yaml_config' => {
-            file      => $self->home->rel_file("conf/$mode.yml"),
+            file      => $self->home->rel_file("conf/$mode.yaml"),
             stash_key => 'config',
             class     => 'YAML::Tiny'
         }

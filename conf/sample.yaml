@@ -1,0 +1,4 @@
+adapter: "DataAdapter::SQLite"
+dsn : "dbi:SQLite:file.db" 
+user :
+password :

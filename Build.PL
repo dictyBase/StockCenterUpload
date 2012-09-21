@@ -4,13 +4,19 @@ use warnings;
 
 use Module::Build;
 
+
+33: "Math::Base36" => "0.09",
+    ^                        
+found String where operator expected
+
+Missing ';' above?
 my %module_build_args = (
     "build_requires"     => { "Module::Build" => "0.3601" },
     "configure_requires" => { "Module::Build" => "0.3601" },
     "dist_abstract" => "Mojolicious application for StockCenter data upload",
     "dist_author"   => ["Yogesh Pandit"],
     "dist_name"     => "StockCenter",
-    "dist_version"  => "0.1",
+    "dist_version"  => "0.1.2",
     "license"       => "perl",
     "module_name"   => "StockCenter",
     "recommends"    => {},
@@ -27,12 +33,11 @@ my %module_build_args = (
         "DBI"                             => "1.622",
         "DBIx::Class"                     => "0.08196",
         "YAML::Tiny"                      => "1.51",
-        "DateTime::Format::Strptime" => "0.74",
-
-        #"DateTime::Format::Oracle" => "0.06",
-        "Data::Dump"   => "1.21",
-        "Math::Base36" => "0.09",
-        "Math::BigInt" => "1.99"
+        "DateTime::Format::Strptime"      => "0.74",
+        "Data::Dump"                      => "1.21",
+        "HTTP::Date"                      => "6.02",
+		"Math::Base36" => "0.09",
+        "Math::BigInt"                    => "1.99"
 
     },
     "script_files" => []
