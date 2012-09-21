@@ -23,6 +23,9 @@ before_install_dependencies() {
   local url=https://github.com/downloads/dictyBase/Mojolicious-PluginBundle/Mojolicious-Plugin-Bundle-0.0055-custom.tar.gz
   curl -o mojolicious-plugin-bundle.tar.gz -s -k -L $url \
   	&& carton install mojolicious-plugin-bundle.tar.gz && rm mojolicious-plugin-bundle.tar.gz""
+
+  echo "------> Installing YAML::Tiny"
+  carton install YAML::Tiny
 }
 
 
