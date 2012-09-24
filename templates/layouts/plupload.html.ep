@@ -20,7 +20,7 @@
   		<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
   		<%= javascript_include_tag '/plupload/js/plupload.full.js' %>
   		<%= javascript_include_tag '/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js' %>
-  		<%= stylesheet '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>
+		<link type="text/css" rel="stylesheet" href="<%= stylesheet_path '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>" />
 
   		<!-- Load dataTables -->
   		<%= javascript_include_tag '/jquery.dataTables.min.js' %>
@@ -42,8 +42,8 @@
 				<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 					<p>
 						Help will be here !!!
-					<p>
-				</div>
+						</p>
+					</div>
 			</div>
 		</div>
 	</body>
