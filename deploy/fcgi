@@ -14,6 +14,9 @@ after_install_dependencies() {
    cd $1
    carton install Plack FCGI FCGI::ProcManager FCGI::Engine
 
+   local perl=`which perl`
+   carton exec -Ilib -- $perl Build.PL && carton exec -Ilib -- ./Build create_db_folder
+   carton exec -Ilib -- ./Build create_history_db
 }
 
 before_install_dependencies() {
