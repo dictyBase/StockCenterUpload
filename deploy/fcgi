@@ -13,10 +13,16 @@ after_install_dependencies() {
    echo "------> Installing plack and dependencies for fcgi deployment"
    cd $1
    carton install Plack FCGI FCGI::ProcManager FCGI::Engine
-
-   local perl=`which perl`
-   carton exec -Ilib -- $perl Build.PL && carton exec -Ilib -- ./Build create_db_folder
-   carton exec -Ilib -- ./Build create_history_db
+	
+   if [ -f db/upload.db ]
+   then
+	   echo "SQLite DB for history exists already."
+   else
+	   local perl=`which perl`
+       carton exec -Ilib -- $perl Build.PL && carton exec -Ilib -- ./Build create_db_folder
+       carton exec -Ilib -- ./Build create_history_db
+	   echo "Successfully created SQLite DB to maintain history"	
+   fi
 }
 
 before_install_dependencies() {
