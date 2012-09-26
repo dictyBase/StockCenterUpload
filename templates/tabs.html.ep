@@ -8,7 +8,7 @@
 		/* pluploader object */
 		$('#stockup').plupload({
 			runtimes: 'html5,flash,html4,silverlight',
-			url: '<%= url_for '/uploads' %>'',
+			url: "<%= url_for '/uploads' %>",
 			max_file_size: '20mb',
 			unique_names: true,
 			chunk_size: '2mb',
