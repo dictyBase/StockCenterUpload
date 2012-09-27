@@ -47,10 +47,10 @@ sub startup {
             $self->redirect_to('new_upload');
         }
     );
-    $r->get('/uploads')->to('upload#index');
+	#$r->get('/uploads')->to('upload#index');
     $r->route( '/uploads/search', format => 'datatable' )->via('get')
         ->to('upload#search');
-    $r->get('/uploads/new')->name('new_upload')->to('upload#new_record');
+    $r->get('/uploads')->name('new_upload')->to('upload#new_record');
     $r->post('/uploads')->name('upload')->to('upload#create');
 
     return;

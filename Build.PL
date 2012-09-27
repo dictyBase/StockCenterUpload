@@ -1,27 +1,33 @@
+#!/usr/bin/perl -w
 
 use strict;
-use warnings;
 
 use Module::Build;
 
+my $class = Module::Build->subclass(
+    code => q{
+		sub ACTION_create_db_folder {
+			use File::Path qw/make_path/;
+			my ($self) = @_;
+			make_path ('db', {verbose => 1});
+		}
 
-33: "Math::Base36" => "0.09",
-    ^                        
-found String where operator expected
+		sub ACTION_create_history_db {
+			use DBI;
+			my $dbh = DBI->connect("dbi:SQLite:dbname=db/upload.db","","", {});
+			$dbh->do("CREATE TABLE uploaded_file ( id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) NOT NULL, size INT NOT NULL, created_at DATETIME NOT NULL DEFAULT current_timestamp )");
+		}
+	},
+);
 
-Missing ';' above?
-my %module_build_args = (
-    "build_requires"     => { "Module::Build" => "0.3601" },
-    "configure_requires" => { "Module::Build" => "0.3601" },
-    "dist_abstract" => "Mojolicious application for StockCenter data upload",
-    "dist_author"   => ["Yogesh Pandit"],
-    "dist_name"     => "StockCenter",
-    "dist_version"  => "0.1.2",
-    "license"       => "perl",
-    "module_name"   => "StockCenter",
-    "recommends"    => {},
-    "recursive_test_files" => 1,
-    "requires"             => {
+my $builder = $class->new(
+    module_name  => 'StockCenter',
+    dist_author  => 'Yogesh Pandit',
+    dist_version => '0.1.2',
+    dist_abstract =>
+        'A Mojolicious web application for stock center data upload',
+    license  => 'perl',
+    requires => {
         "Moose"                           => "2.0602",
         "Moose::Util::TypeConstraints"    => "2.0602",
         "Mojolicious"                     => "2.51",
@@ -30,19 +36,17 @@ my %module_build_args = (
         "Spreadsheet::ParseExcel"         => "0.59",
         "namespace::autoclean"            => "0.13",
         "DBD::Oracle"                     => "1.44",
-        "DBI"                             => "1.622",
         "DBIx::Class"                     => "0.08196",
         "YAML::Tiny"                      => "1.51",
-        "DateTime::Format::Strptime"      => "0.74",
+        "DateTime::Format::Strptime"      => "1.4000",
         "Data::Dump"                      => "1.21",
-        "HTTP::Date"                      => "6.02",
-		"Math::Base36" => "0.09",
+        "Math::Base36"                    => "0.09",
         "Math::BigInt"                    => "1.99"
-
     },
+    add_to_cleanup => ['StockCenter-*'],
     "script_files" => []
 );
 
-my $build = Module::Build->new(%module_build_args);
+$builder->create_build_script();
 
-$build->create_build_script;
+1;

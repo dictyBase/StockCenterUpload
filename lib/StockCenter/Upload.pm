@@ -7,6 +7,7 @@ use Mojo::Base 'Mojolicious::Controller';
 use Data::Dump qw/pp/;
 use StockCenter::Parser;
 use DBCon::Uploader;
+use File::Temp;
 
 sub new_record {
 }
@@ -20,6 +21,7 @@ sub create {
     my $filename = $upload->filename;
     $sth->execute( $filename, $upload->size );
     my $id = $db->last_insert_id( "", "", "", "" );
+
     my $temp_file = File::Temp->new( SUFFIX => '.dat' );
     $upload->move_to($temp_file);
 
@@ -30,6 +32,7 @@ sub create {
 
     my $file = $temp_file->filename;
 	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
+
     my $parser = StockCenter::Parser->new( file => $file );
     my $adapter = $self->adapter;
     while ( $parser->has_next() ) {

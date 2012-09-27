@@ -1,0 +1,31 @@
+---
+- name:            "development.server"
+  server_class:    "FCGI::Engine::Manager::Server::Plackup"
+  scriptname:      "script/stockcenter.psgi"
+  nproc:            2
+  pidfile:         "/tmp/stockcenter.pid"
+  socket:          "/tmp/stockcenter.socket"
+  additional_args: ['-e',  'development']
+- name:            "devprod.server"
+  server_class:    "FCGI::Engine::Manager::Server::Plackup"
+  scriptname:      "script/stockcenter.psgi"
+  nproc:            3
+  pidfile:         "/tmp/stockcenter.pid"
+  socket:          "/tmp/stockcenter.socket"
+  additional_args: ['-E',  'devprod']
+- name:            "staging.server"
+  server_class:    "FCGI::Engine::Manager::Server::Plackup"
+  scriptname:      "script/stockcenter.psgi"
+  nproc:            3
+  pidfile:         "/tmp/stockcenter.pid"
+  socket:          "/tmp/stockcenter.socket"
+  additional_args: ['-e',  'staging']
+- name:            "production.server"
+  server_class:    "FCGI::Engine::Manager::Server::Plackup"
+  scriptname:      "script/stockcenter.psgi"
+  nproc:            3
+  pidfile:         "/tmp/stockcenter.pid"
+  socket:          "/tmp/stockcenter.socket"
+  additional_args: ['-e',  'production']
+
+

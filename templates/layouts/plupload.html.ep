@@ -8,41 +8,56 @@
 		<!-- Please don't add "maximum-scale=1" here. It's bad for accessibility. -->
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-		<%= stylesheet_link_tag '/stockcenterupload.css' %>
+		<%= stylesheet_link_tag 'stockcenterupload.css' %>
 
   		<!-- Load jQuery theme CSS -->
-  		<%= stylesheet_link_tag '/smoothness/jquery-ui.css' %>
+  		<%= stylesheet_link_tag 'smoothness/jquery-ui.css' %>
 
   		<!-- Load jquery and ui -->
-  		<%= javascript_include_tag '/plupload/jquery-1.6.2.min.js' %>
-  		<%= javascript_include_tag '/plupload/jquery-ui-1.8.16.custom.min.js' %>
+  		<%= javascript_include_tag 'plupload/jquery-1.6.2.min.js' %>
+  		<%= javascript_include_tag 'plupload/jquery-ui-1.8.16.custom.min.js' %>
 
   		<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
-  		<%= javascript_include_tag '/plupload/js/plupload.full.js' %>
-  		<%= javascript_include_tag '/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js' %>
-  		<%= stylesheet '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>
+  		<%= javascript_include_tag 'plupload/js/plupload.full.js' %>
+  		<%= javascript_include_tag 'plupload/js/jquery.ui.plupload/jquery.ui.plupload.js' %>
+		<link type="text/css" rel="stylesheet" href="<%= stylesheet_path '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>" />
 
   		<!-- Load dataTables -->
-  		<%= javascript_include_tag '/jquery.dataTables.min.js' %>
-		<%= stylesheet_link_tag '/dataTables.css' %>
-  		<%= stylesheet_link_tag '/dataTables-jui.css' %>
+  		<%= javascript_include_tag 'jquery.dataTables.min.js' %>
+		<%= stylesheet_link_tag 'dataTables.css' %>
+  		<%= stylesheet_link_tag 'dataTables-jui.css' %>
 
 		<%= content_for 'upload_datatable' %>
   	</head>
 
   	<body>
-		<div id="header">
+		<!--<div id="header">
 			<img src="/images/dictyBase-logo.jpg" alt="dictyBase Logo" />
-  		</div>
+		</div>-->
 	  	<div id="container">
 	  		<div id="uploader">
 				<%= content %>
   			</div>
 			<div id="helper">
-				<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-					<p>
-						Help will be here !!!
-					<p>
+				<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="font-family: 'Lucida Fax'; font-size: 11pt;" >
+					<p><b>Hints:</b>
+					<ul>
+						<li>Supports only Microsoft Excel (*.xls) file
+						<li>The input file does not accept headers
+						<li>Currently supported headers (StockCenter Inventory)
+						<br/>
+						<ul>
+							<li><b>strain_descriptor</b> (V10490)
+							<li><b>location</b> (4-50(32))
+							<li><b>stored_by</b> (Kerry)
+							<li><b>storage_date</b> (8/1/11)
+							<li><b>num_vials</b> (5)
+							<li><b>color</b> (yellow)
+							<li><b>comments</b> (Application in beta phase)
+						</ul>
+
+					</ul>
+					</p>
 				</div>
 			</div>
 		</div>

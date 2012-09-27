@@ -1,4 +1,7 @@
-adapter: "DataAdapter::SQLite"
-dsn : "dbi:SQLite:file.db" 
-user :
-password :
+adapter: "DataAdapter::Oracle"
+dsn : "dbi:Oracle:"
+opt : "LongTruncOk"
+user : ""
+password : ""
+
+relative_url_root: '/assets'
