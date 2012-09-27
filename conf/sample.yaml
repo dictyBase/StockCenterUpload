@@ -1,5 +1,7 @@
 adapter: "DataAdapter::Oracle"
-#dsn : 
-#user : 
-#password : 
+dsn : "dbi:Oracle:"
+opt : "LongTruncOk"
+user : ""
+password : ""
 
+relative_url_root: '/assets'
