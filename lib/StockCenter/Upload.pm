@@ -10,6 +10,8 @@ use DBCon::Uploader;
 use File::Temp;
 
 sub new_record {
+	my ($self) = @_;
+	$self->render(template => 'uploads');
 }
 
 sub create {

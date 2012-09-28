@@ -1,0 +1,80 @@
+
+<% content_for upload_datatable => begin %> 
+
+	<%= javascript begin %> 
+	
+		$(document).ready(function() {
+			var datatable = null;
+			$('#upload_tabs').tabs();
+
+			/* pluploader object */
+			$('#stockup').plupload({
+				runtimes: 'html5,flash,html4,silverlight',
+				url: "<%= url_for '/uploads' %>",
+				max_file_size: '20mb',
+				unique_names: true,
+				chunk_size: '2mb',
+				flash_swf_url: '/javascripts/plupload/js/plupload.flash.swf',
+				silverlight_xap_url: '/javascripts/plupload/js/plupload.silverlight.xap'
+			});
+
+			/* clear upload button */
+			$('<a></a>').attr('id', 'stockup_clear')
+				.attr('role', 'button')
+				.addClass('plupload_button ui-button ui-widget ui-state-default ui-corner-all')
+				.addClass('ui-button-text-icon-primary ui-button-disabled ui-state-disabled')
+				.append('<span class="ui-button-icon-primary ui-icon ui-icon-refresh"></span>')
+				.append('<span class="ui-button-text">Clear Uploads</span>')
+				.appendTo('div.plupload_buttons');
+
+			/* event binding for upload */
+			var uploader = $('#stockup').plupload('getUploader');
+			$('a.plupload_start').click(function() {
+				if (uploader.files.length > 0) {
+					uploader.start();
+				} else {
+					alert('You must at least upload one file');
+				}
+			});
+		
+			uploader.bind('UploadProgress', function(up, file) {
+				$('#' + file.id + " b").html(file.percent + "%");
+			});
+
+			/* event binding for enabling the clear upload button  */
+			uploader.bind('FilesAdded', function(up, files) {
+				var anchor = $('a#stockup_clear');
+				if (anchor.hasClass('ui-button-disabled')) {
+					anchor.removeClass('ui-button-disabled ui-state-disabled');
+				}
+			});
+
+			/* event binding for clear the upload queue  */
+			$('a#stockup_clear').click(function() {
+				$.each(uploader.files, function(i, file) {
+					if (file) {
+						uploader.removeFile(file);
+					}
+				});
+			});
+
+			/* Display for list of uploads */
+			$('#upload_tabs').bind('tabsselect', function(event, ui) {
+				if ((ui.panel.id === 'list_upload_tab') && !datatable) {
+					$('#uploads').dataTable({
+						"bFilter": false,
+						"sPaginationType": "full_numbers",
+						"bProcessing": true,
+						"bServerSide": true,
+						"bJQueryUI": true,
+						"sAjaxSource": "<%= url_for '/uploads/search.datatable' %>"
+					});
+					datatable = true;
+				}
+			});
+		}); 
+	<% end %>
+
+<% end %>
+
+

@@ -1,21 +1,25 @@
-% layout 'plupload',  title => 'dictyBase : Stocks Uploader';
-% include 'tabs';
+% layout 'default',  title => 'dictyBase Stocks Uploader';
+% include 'plupload';
 
 <div id="upload_tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 		<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
-				<a href="#new_upload_tab">Uploader</a>
+			<a href="#new_upload_tab">Uploader</a>
 		</li>
 		<li class="ui-state-default ui-corner-top">
-				<a href="#list_upload_tab">History</a>
+			<a href="#list_upload_tab">History</a>
 		</li>
 	</ul>
+
 	<div id="new_upload_tab" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 		<div id="stockup">
-				<p> Your browser do not support Flash, HTML5, Silverlight or even HTML4 </p>
+			<p> Your browser do not support Flash, HTML5, Silverlight or even HTML4 </p>
 		</div>
 	</div>
+
 	<div id="list_upload_tab" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+
 		<table id="uploads" class="display">
 			<thead>
 				<tr>
@@ -30,6 +34,7 @@
 				</tr>
 			</tbody>
 		</table>
+
 	</div>
 </div>
 
