@@ -5,18 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<title><%= title %></title>
-
+		
+		<%= javascript_include_tag 'plupload/jquery-1.8.2.min' %>
+		<%= javascript_include_tag 'plupload/jquery-ui-1.8.16.custom.min' %>
+			
 		<%= stylesheet_link_tag 'bootstrap/bootstrap.min' %>
 		<%= stylesheet_link_tag 'bootstrap/bootstrap-responsive.min' %>
 		<%= javascript_include_tag 'bootstrap.min' %>
 		
-		<%= stylesheet_link_tag 'stockcenterupload' %>
-		<%= javascript_include_tag 'stockcenter-ui' %>
-
 		<%= stylesheet_link_tag 'smoothness/jquery-ui' %>
-		<%= javascript_include_tag 'plupload/jquery-1.6.2.min' %>
-		<%= javascript_include_tag 'plupload/jquery-ui-1.8.16.custom.min' %>
-		
+				
 		<%= javascript_include_tag 'plupload/js/plupload.full' %>
 		<%= javascript_include_tag 'plupload/js/jquery.ui.plupload/jquery.ui.plupload' %>
 		<link type="text/css" rel="stylesheet" href="<%= stylesheet_path '/javascripts/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css' %>" />
@@ -24,6 +22,9 @@
 		<%= javascript_include_tag 'jquery.dataTables.min' %>
 		<%= stylesheet_link_tag 'dataTables' %>
 		<%= stylesheet_link_tag 'dataTables-jui' %>
+
+		<%= stylesheet_link_tag 'stockcenterupload' %>
+		<%= javascript_include_tag 'stockcenter-ui' %>
 		
 		<%= content_for 'upload_datatable' %>		
 	</head>
@@ -49,8 +50,8 @@
 				<div class="span9">
 					<div id="uploader">
 						<%= content %>
-					</div>
-				</div>
+					</div> <!-- uploader -->
+				</div> <!-- span9 -->
 
 				<div class="span3">
 					<div class="control-group">
@@ -58,33 +59,20 @@
 
 						<div class="controls span2">
 
-							<div class="btn-group-vertical" data-toggle="buttons-radio">
-								<button class="btn">Strains</button>
+							<div class="btn-group btn-group-vertical" data-toggle="buttons-radio" id="data-types">
+								<button type="button" class="btn">Strains</button>						
 								<br>
-								<button class="btn btn-danger">Strain Inventories</button>
+								<button type="button" class="btn">Strain Inventories</button>
 								<br>
-								<button class="btn">Plasmids</button>
+								<button type="button" class="btn">Plasmids</button>
 								<br>
-								<button class="btn">Plasmid Inventories</button>
-							</div>
+								<button type="button" class="btn">Plasmid Inventories</button>
+							</div> <!-- btn-group -->
+						</div> <!-- controls span2 -->
+					</div> <!-- control-group  -->
+				</div> <!-- span3 -->
 
-							<!--<label class="checkbox">
-								<input type="checkbox" value="option1" id="inlineCheckbox1"> Strains
-							</label>
-							<label class="checkbox">
-								<input type="checkbox" value="option2" id="inlineCheckbox2"> Strain Inventories
-							</label>
-							<label class="checkbox">
-								<input type="checkbox" value="option3" id="inlineCheckbox3"> Plasmids
-							</label>
-							<label class="checkbox">
-								<input type="checkbox" value="option3" id="inlineCheckbox4"> Plasmid Inventories
-							</label>-->
-						</div>
-
-					</div>
-				</div>
-			</div>
+			</div> <!-- row -->
 			<br>
 			<div class="well">
 				<h3>Hints</h3>
@@ -102,7 +90,7 @@
 						<li><b>comments</b> (Application in beta)
 					</ul>
 				</ul>
-			</div>
-		</div>
+			</div> <!-- well -->
+		</div> <!-- container -->
 	</body>
 </html>

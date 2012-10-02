@@ -31,6 +31,8 @@
 			var uploader = $('#stockup').plupload('getUploader');
 			$('a.plupload_start').click(function() {
 				if (uploader.files.length > 0) {
+					var selected = $('#data-types').attr('value');
+					console.log(selected);
 					uploader.start();
 				} else {
 					alert('You must at least upload one file');
