@@ -1,12 +1,6 @@
 
 package StockCenter::Parser;
 
-=head1 NAME
-
-=head1 SYNOPSIS
-
-=cut
-
 use strict;
 use namespace::autoclean;
 use Moose;
