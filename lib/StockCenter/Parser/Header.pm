@@ -3,12 +3,15 @@ package StockCenter::Parser::Header;
 
 use strict;
 use Moose;
-use Method::Signatures;
 
-#has [qw/strain_desc stored_by color/] => ( is => 'rw', isa => 'Str' );
-#has 'storage_date' => ( is => 'rw', isa => 'Str' );
-
-func parse($headers) {
-    my $vals = split( '\t', $headers );
-
+sub parse {
+    my ( $self, $headers ) = @_;
+    my @vals = split( '\t', $headers );
+    my $hashRef = {};
+    for ( my $i = 0; $i < scalar(@vals); $i++ ) {
+        $hashRef->{$i} = $vals[$i];
     }
+	return $hashRef;
+}
+
+1;

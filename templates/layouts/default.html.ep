@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -60,13 +61,13 @@
 						<div class="controls span2">
 
 							<div class="btn-group btn-group-vertical" data-toggle="buttons-radio" id="data-types">
-								<button type="button" class="btn">Strains</button>						
+								<button type="button" class="btn">Strain</button>						
 								<br>
-								<button type="button" class="btn">Strain Inventories</button>
+								<button type="button" class="btn">Strain Inventory</button>
 								<br>
-								<button type="button" class="btn">Plasmids</button>
+								<button type="button" class="btn">Plasmid</button>
 								<br>
-								<button type="button" class="btn">Plasmid Inventories</button>
+								<button type="button" class="btn">Plasmid Inventory</button>
 							</div> <!-- btn-group -->
 						</div> <!-- controls span2 -->
 					</div> <!-- control-group  -->

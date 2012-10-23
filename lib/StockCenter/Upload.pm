@@ -5,7 +5,7 @@ use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
 use Data::Dump qw/pp/;
-use StockCenter::Parser;
+use StockCenter::Type::Strain;
 use DBCon::Uploader;
 use File::Temp;
 
@@ -35,11 +35,11 @@ sub create {
     my $file = $temp_file->filename;
 	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
 
-    my $parser = StockCenter::Parser->new( file => $file );
+    my $parser = StockCenter::Type::Strain->new( file => $file );
     my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
         my $row = $parser->next();
-        $adapter->insert($row);
+		#$adapter->insert($row);
     }
     $self->rendered(201);
     return;

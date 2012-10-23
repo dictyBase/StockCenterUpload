@@ -3,9 +3,14 @@ package StockCenter::Parser;
 
 use strict;
 use namespace::autoclean;
-use Moose;
+
+#use Moose;
 use Spreadsheet::ParseExcel;
 use StockCenter::Parser::Row;
+use StockCenter::Parser::Header;
+
+use Moose::Role;
+requires 'validate_headers', 'next';
 
 # Excel file to be read
 has 'file' => (
@@ -13,14 +18,18 @@ has 'file' => (
     isa     => 'Str',
     trigger => sub {
         my ( $self, $file ) = @_;
+		my $FH = IO::File->new($file);
+		$self->headers(StockCenter::Parser::Header->parse($FH->getline));
         my $workbook = $self->parser->parse($file);
         if ( !$workbook ) {
             die $self->parser->error, " :problem\n";
         }
         my $sp = $workbook->worksheet(0);
-        my ( $min, $max ) = $sp->row_range();
-        $self->curr_row(0);
-        $self->row_max($max);
+        my ( $rmin, $rmax ) = $sp->row_range();
+        my ( $cmin, $cmax ) = $sp->col_range();
+        $self->curr_row(1);
+        $self->row_max($rmax);
+        $self->col_max($cmax);
         $self->spreadsheet($sp);
     }
 );
@@ -35,27 +44,16 @@ has 'parser' => (
     lazy => 1
 );
 
-# Spreadsheet headers in a Hash
 has 'headers' => (
     traits  => ['Hash'],
-    is      => 'ro',
+    is      => 'rw',
     isa     => 'HashRef',
-    default => sub {
-        {   '0' => 'strain_desc',
-            '1' => 'location',
-            '2' => 'stored_by',
-            '3' => 'storage_date',
-            '4' => 'num_vials',
-            '5' => 'color',
-            '6' => 'comments'
-        };
-    },
     handles => {
         get_value   => 'get',
         is_empty    => 'is_empty',
         count       => 'count',
         header_keys => 'keys'
-    },
+    }
 );
 
 # Spreadsheet::ParseExcel object of the file to be read
@@ -65,20 +63,24 @@ has 'spreadsheet' => (
     predicate => 'has_spreadsheet'
 );
 
-# Counter to maintain position of current row
-has 'curr_row' => (
-    is      => 'rw',
-    isa     => 'Int',
-    default => 0
-);
-
 # Maximum number of entries in the excel file
-has 'row_max' => (
+has [qw/row_max col_max curr_row/] => (
     is      => 'rw',
     isa     => 'Int',
     default => 0,
     lazy    => 1
 );
+
+sub get_row {
+    my ( $self, $row_num ) = @_;
+    my $row;
+    for ( my $c = 0; $c < $self->col_max; $c++ ) {
+		print "Getting HEADER from $row, $c\n";
+        $row = $row . $self->spreadsheet->get_cell( $row_num, $c );
+        $row = $row . "\t";
+    }
+    return chomp($row);
+}
 
 # Method to check if next element exists
 sub has_next {
@@ -90,24 +92,31 @@ sub has_next {
 }
 
 # Method to return next entry as object of StockCenter::Parser::Row
-sub next {
-    my ($self)      = @_;
-    my $curr_row    = $self->curr_row;
-    my $row         = StockCenter::Parser::Row->new();
-    my $spreadsheet = $self->spreadsheet;
-
-    for my $key ( $self->header_keys ) {
-        my $cell = $spreadsheet->get_cell( $curr_row, $key );
-        next unless ($cell);
-        my $meth_name = $self->get_value($key);
-        my $value     = $cell->value();
-        if ( $meth_name eq 'num_vials' ) {
-            $value = int($value);
-        }
-        $row->$meth_name($value);
-    }
-    return $row;
-}
-
+#sub next {
+#    my ($self)      = @_;
+#    my $curr_row    = $self->curr_row;
+#    my $row         = StockCenter::Parser::Row->new();
+#    my $spreadsheet = $self->spreadsheet;
+#
+#    if ( $self->curr_row == 0 && $self->headers->is_empty ) {
+#        $self->headers(
+#            StockCenter::Parser::Header->parse(
+#                $self->get_row( $self->curr_row )
+#            )
+#        );
+#    }
+#
+#    for my $key ( $self->header_keys ) {
+#        my $cell = $spreadsheet->get_cell( $curr_row, $key );
+#        next unless ($cell);
+#        my $meth_name = $self->get_value($key);
+#        my $value     = $cell->value();
+#        if ( $meth_name eq 'num_vials' ) {
+#            $value = int($value);
+#        }
+#        $row->$meth_name($value);
+#    }
+#    return $row;
+#}
+#
 1;
-
