@@ -1,12 +1,10 @@
+
 package StockCenter::Type::Strain;
 
 use strict;
 use warnings;
 
 use Moose;
-
-#use MooseX::Attribute::Dependent;
-
 with 'StockCenter::Parser';
 
 sub validate_headers {
@@ -22,21 +20,21 @@ sub next {
 
     #my $curr_row = $self->curr_row;
     if ( $self->curr_row == 0 && $self->headers->is_empty ) {
-        $self->headers(
-            StockCenter::Parser::Header->parse(
-                $self->get_row( $self->curr_row )
-            )
+        my $H = StockCenter::Parser::Header->new;
+        $H->parse(
+            $self->get_row( $self->curr_row )
+
         );
         print "Getting HEADERS\n";
-        $self->validate_headers();
+		#$self->validate_headers();
     }
 
     for my $key ( $self->header_keys ) {
         my $cell = $self->spreadsheet->get_cell( $self->curr_row, $key );
         next unless ($cell);
         my $header = $self->get_value($key);
-		my $value = $cell->value();
-        $row->$header( $value );
+        my $value  = $cell->value();
+        $row->$header($value);
     }
 
 }

@@ -1,3 +1,4 @@
+
 package StockCenter::Upload;
 
 use strict;
@@ -6,7 +7,7 @@ use warnings;
 use Mojo::Base 'Mojolicious::Controller';
 use Data::Dump qw/pp/;
 use StockCenter::Type::Strain;
-use DBCon::Uploader;
+#use DBCon::Uploader;
 use File::Temp;
 
 sub new_record {
