@@ -7,12 +7,13 @@ use warnings;
 use Mojo::Base 'Mojolicious::Controller';
 use Data::Dump qw/pp/;
 use StockCenter::Type::Strain;
+
 #use DBCon::Uploader;
 use File::Temp;
 
 sub new_record {
-	my ($self) = @_;
-	$self->render(template => 'uploads');
+    my ($self) = @_;
+    $self->render( template => 'uploads' );
 }
 
 sub create {
@@ -27,30 +28,34 @@ sub create {
 
     my $temp_file = File::Temp->new( SUFFIX => '.dat' );
     $upload->move_to($temp_file);
+    $self->app->log->info('File uploaded to /tmp');
 
 	#$upload->move_to($self->app->home->rel_file( "uploads/" . $id . "_" . $filename ) );
     my $headers = $self->res->headers;
     $headers->content_type('text/plain');
+
     #$headers->location( $self->url_for("uploads/$id")->to_abs );
 
     my $file = $temp_file->filename;
-	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
+ 	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
 
+    $self->app->log->debug('Parsing & loading');
     my $parser = StockCenter::Type::Strain->new( file => $file );
     my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
         my $row = $parser->next();
-		#$adapter->insert($row);
+        #$adapter->insert($row);
     }
     $self->rendered(201);
     return;
 
 }
 
+
 sub index {
 }
 
-# Search local SQLite database for upload history
+
 sub search {
     my ($self) = @_;
     my $limit  = $self->param('iDisplayLength');

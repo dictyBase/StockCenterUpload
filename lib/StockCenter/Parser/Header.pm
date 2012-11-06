@@ -2,7 +2,7 @@
 package StockCenter::Parser::Header;
 
 use strict;
-use Moose;
+use Moose::Role;
 use namespace::autoclean;
 
 use StockCenter::Parser::Row;
@@ -12,10 +12,10 @@ has 'headers' => (
     is      => 'rw',
     isa     => 'HashRef',
     handles => {
-        get_value   => 'get',
-        is_empty    => 'is_empty',
-        count       => 'count',
-        header_keys => 'keys'
+        get_value      => 'get',
+        has_no_headers => 'is_empty',
+        count          => 'count',
+        header_keys    => 'keys'
     },
     trigger => sub {
         my ($self) = @_;
@@ -23,12 +23,10 @@ has 'headers' => (
         for my $key ( $self->header_keys ) {
             $row->meta->add_attribute( $self->get_value($key) );
         }
-    },
-    default => sub { () },
-    lazy    => 1
+    }
 );
 
-sub parse {
+sub parse_headers {
     my ( $self, $headers ) = @_;
     my @vals = split( '\t', $headers );
     my $hashRef = {};
@@ -37,7 +35,7 @@ sub parse {
     }
     $self->headers($hashRef);
 
-    #return $self->headers;
+    return $self->headers;
 }
 
 1;

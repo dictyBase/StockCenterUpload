@@ -4,22 +4,21 @@ package DataAdapter::Oracle;
 use strict;
 use warnings;
 
-=head1 DESCRIPTION
-
-=head1 USAGE
-
-=cut
-
+#use Moose;
 use Moose;
 use MOD::SGD;
 use MOD::SGD::StockCenterInventoryDual;
 use DateTime::Format::Strptime;
 
+#requires 'insert';
+
 has 'dsn' => (
     is            => 'rw',
     isa           => 'Str',
     required      => 1,
-    documentation => 'Database DSN'
+    documentation => 'Database DSN',
+    default       => '',
+    lazy          => 1
 );
 
 has [qw/user password/] => (

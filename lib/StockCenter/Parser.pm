@@ -2,13 +2,14 @@
 package StockCenter::Parser;
 
 use strict;
+
+use Mojo::Base 'Mojolicious::Controller';
+use Moose::Role;
 use namespace::autoclean;
 use Spreadsheet::ParseExcel;
-
 use StockCenter::Parser::Row;
-use StockCenter::Parser::Header;
 
-use Moose::Role;
+with 'StockCenter::Parser::Header';
 requires 'validate_headers', 'next';
 
 has 'file' => (
@@ -16,8 +17,9 @@ has 'file' => (
     isa     => 'Str',
     trigger => sub {
         my ( $self, $file ) = @_;
-        my $FH = IO::File->new($file);
-        $self->headers( StockCenter::Parser::Header->parse( $FH->getline ) );
+
+        # my $FH = IO::File->new($file);
+        ##$self->headers( StockCenter::Parser::Header->parse( $FH->getline ) );
         my $workbook = $self->parser->parse($file);
         if ( !$workbook ) {
             die $self->parser->error, " :problem\n";
@@ -25,11 +27,13 @@ has 'file' => (
         my $sp = $workbook->worksheet(0);
         my ( $rmin, $rmax ) = $sp->row_range();
         my ( $cmin, $cmax ) = $sp->col_range();
-        $self->curr_row(1);
+        $self->curr_row(0);
         $self->row_max($rmax);
         $self->col_max($cmax);
         $self->spreadsheet($sp);
-    }
+
+    },
+    required => 1
 );
 
 has 'parser' => (
@@ -57,18 +61,21 @@ has [qw/row_max col_max curr_row/] => (
 sub get_row {
     my ( $self, $row_num ) = @_;
     my $row;
+	my $spreadsheet = $self->spreadsheet;
     for ( my $c = 0; $c < $self->col_max; $c++ ) {
-        print "Getting HEADER from $row, $c\n";
-        $row = $row . $self->spreadsheet->get_cell( $row_num, $c );
+        $self->app->log->debug("Getting HEADER from $row, $c");
+        $row = $row . $spreadsheet->get_cell( $row_num, $c );
         $row = $row . "\t";
     }
-    return chomp($row);
+    chomp($row);
+    return $row;
 }
 
 sub has_next {
     my ($self) = @_;
-    if ( $self->curr_row <= $self->row_max ) {
-        $self->curr_row( $self->curr_row + 1 );
+    if ( $self->curr_row < $self->row_max ) {
+
+        #$self->curr_row( $self->curr_row + 1 );
         return 1;
     }
 }

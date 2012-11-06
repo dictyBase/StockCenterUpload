@@ -52,6 +52,7 @@ sub startup {
         ->to('upload#search');
     $r->get('/uploads')->name('new_upload')->to('upload#new_record');
     $r->post('/uploads')->name('upload')->to('upload#create');
+	$self->app->log->info('All routes set up');
 
     return;
 }
