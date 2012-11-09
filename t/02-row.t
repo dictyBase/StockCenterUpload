@@ -1,15 +1,21 @@
 
 use Test::More qw/no_plan/;
 use Test::Moose;
-use Test::Exception;
+use FindBin qw/$Bin/;
+use File::Spec::Functions;
 
-BEGIN { use_ok('StockCenter::Parser::Row'); }
+BEGIN { use_ok('StockCenter::Type::Strain'); }
 
-my $row = StockCenter::Parser::Row->new();
-isa_ok( $row, 'StockCenter::Parser::Row' );
+my $parser = StockCenter::Type::Strain->new();
+my $file = catfile($Bin, 'data', 'strain.xls');
+$parser->file($file);
 
-has_attribute_ok( $row, $_, "It has an attribute $_" )
-    for
-    qw/num_vials strain_desc comments color storage_date stored_by location/;
+while ($parser->has_next()) {
+	my $row = $parser->next();
+	isa_ok($row, 'StockCenter::Parser::Row');
+}
 
-dies_ok { $row->num_vials('Hello') } 'Expecting to die';
+#has_attribute_ok( $row, $_, "It has an attribute $_" )
+#    for
+#    qw/num_vials strain_desc comments color storage_date stored_by location/;
+

@@ -1,14 +1,21 @@
 
 use Test::More qw/no_plan/;
 use Test::Moose;
+use FindBin qw/$Bin/;
+use File::Spec::Functions;
 
-BEGIN { use_ok('StockCenter::Parser::Header'); }
+BEGIN { use_ok('StockCenter::Type::Strain'); }
 
-my $row
-    = "strain_descriptor\tstrain_names\tsystematic_name\tparental_strain\tassociated_genes\tplasmid\tmutagenesis_method\tgenetic_modification\tstrain_summary\tgenotype\tstrain_characteristics\tspecies\tpubmed_id\tdate_obtained\tobtained_as\tdepositor\tcomments";
-my $headers = StockCenter::Parser::Header->parse($row);
+my $parser = StockCenter::Type::Strain->new();
+my $file = catfile( $Bin, 'data', 'strain.xls' );
+$parser->file($file);
 
-foreach $key ( keys %{$headers} ) { print "$key ->  $headers->{$key}\n"; }
-
-isa_ok( $headers, 'HASH' );
+if ( $parser->has_next() ) {
+    my $row = $parser->next();
+}
+isa_ok( $parser->headers, 'HASH' );
+is($parser->header_count, 6, "\# headers is fine");
+foreach $key ( $parser->header_keys ) {
+    print "$key ->  $parser->get_header($key)\n";
+}
 
