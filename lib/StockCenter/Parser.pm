@@ -7,7 +7,6 @@ use Mojo::Base 'Mojolicious::Controller';
 use Moose::Role;
 use namespace::autoclean;
 use Spreadsheet::ParseExcel;
-use StockCenter::Parser::Row;
 
 has 'file' => (
     is      => 'rw',

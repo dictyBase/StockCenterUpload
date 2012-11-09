@@ -5,25 +5,16 @@ use strict;
 use Moose::Role;
 use namespace::autoclean;
 
-use StockCenter::Parser::Row;
-
 has 'headers' => (
     traits  => ['Hash'],
     is      => 'rw',
     isa     => 'HashRef',
     handles => {
-        get_value      => 'get',
+        get_header     => 'get',
         has_no_headers => 'is_empty',
-        count          => 'count',
+        header_count   => 'count',
         header_keys    => 'keys'
     },
-    trigger => sub {
-        my ($self) = @_;
-        my $row = StockCenter::Parser::Row->new;
-        for my $key ( $self->header_keys ) {
-            $row->meta->add_attribute( $self->get_value($key) );
-        }
-    }
 );
 
 sub parse_headers {
@@ -34,8 +25,7 @@ sub parse_headers {
         $hashRef->{$i} = $vals[$i];
     }
     $self->headers($hashRef);
-
-    return $self->headers;
+    #return $self->headers;
 }
 
 1;

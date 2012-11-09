@@ -2,14 +2,15 @@
 package StockCenter::Type::Strain;
 
 use strict;
-use warnings;
 
 use DataAdapter::Oracle;
 use Mojo::Base 'Mojolicious::Controller';
 use Moose;
 
+use StockCenter::Parser::Row;
 with 'StockCenter::Parser';
 with 'StockCenter::Parser::Header';
+#with 'StockCenter::Parser::Row';
 
 sub validate_headers {
     my ($self) = @_;
@@ -18,22 +19,21 @@ sub validate_headers {
 sub next {
     my ($self) = @_;
     my $row = StockCenter::Parser::Row->new();
-    $self->app->log->debug( 'Current row: ' . $self->curr_row );
     if ( $self->curr_row == 0 && $self->has_no_headers ) {
         my $row = $self->get_row( $self->curr_row );
         $self->parse_headers($row);
+        $self->curr_row( $self->curr_row + 1 );
     }
-    $self->app->log->debug( "Headers count : " . $self->count );
 
     for my $key ( $self->header_keys ) {
         my $cell = $self->spreadsheet->get_cell( $self->curr_row, $key );
         next unless ($cell);
-        my $header = $self->get_value($key);
+        my $header = $self->get_header($key);
         my $value  = $cell->value();
-        $row->$header($value);
+        $row->set_row( $header => $value );
     }
-    return $row;
     $self->curr_row( $self->curr_row + 1 );
+    return $row;
 }
 
 sub insert {
