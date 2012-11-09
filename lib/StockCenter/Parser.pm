@@ -9,17 +9,12 @@ use namespace::autoclean;
 use Spreadsheet::ParseExcel;
 use StockCenter::Parser::Row;
 
-with 'StockCenter::Parser::Header';
-requires 'validate_headers', 'next';
-
 has 'file' => (
     is      => 'rw',
     isa     => 'Str',
     trigger => sub {
         my ( $self, $file ) = @_;
-
-        # my $FH = IO::File->new($file);
-        ##$self->headers( StockCenter::Parser::Header->parse( $FH->getline ) );
+        $self->app->log->debug($file);
         my $workbook = $self->parser->parse($file);
         if ( !$workbook ) {
             die $self->parser->error, " :problem\n";
@@ -31,7 +26,6 @@ has 'file' => (
         $self->row_max($rmax);
         $self->col_max($cmax);
         $self->spreadsheet($sp);
-
     },
     required => 1
 );
@@ -61,9 +55,8 @@ has [qw/row_max col_max curr_row/] => (
 sub get_row {
     my ( $self, $row_num ) = @_;
     my $row;
-	my $spreadsheet = $self->spreadsheet;
+    my $spreadsheet = $self->spreadsheet;
     for ( my $c = 0; $c < $self->col_max; $c++ ) {
-        $self->app->log->debug("Getting HEADER from $row, $c");
         $row = $row . $spreadsheet->get_cell( $row_num, $c );
         $row = $row . "\t";
     }
@@ -74,8 +67,6 @@ sub get_row {
 sub has_next {
     my ($self) = @_;
     if ( $self->curr_row < $self->row_max ) {
-
-        #$self->curr_row( $self->curr_row + 1 );
         return 1;
     }
 }

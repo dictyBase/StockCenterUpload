@@ -39,8 +39,8 @@
 			$('a.plupload_start').click(function() {
 				if (uploader.files.length > 0) {
 					var selected = $('#data-types > button.active').text();
-					if (selected != 'Strain Inventories' ){
-						alert("We don't support upload of this type of data, yet. Try 'Strain Inventories'")
+					if (selected != 'Strain' ){
+						alert("We don't support upload of this type of data, yet. Try 'Strain'")
 						} else {
 							uploader.start();
 						}

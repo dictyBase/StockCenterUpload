@@ -40,7 +40,8 @@ sub create {
  	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
 
     $self->app->log->debug('Parsing & loading');
-    my $parser = StockCenter::Type::Strain->new( file => $file );
+    my $parser = StockCenter::Type::Strain->new();
+	$parser->file($file );
     my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
         my $row = $parser->next();
