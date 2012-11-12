@@ -1,3 +1,10 @@
-#### Stock Center Upload
+[![Build Status](https://travis-ci.org/[dictyBase]/[StockCenterUpload].png)](https://travis-ci.org/[dictyBase]/[StockCenterUpload])
 
-###### A Mojolicious web application to upload stock center data at dictyBase; using Plupload, jQuery & HTML5.
+# Stock Center Upload
+
+A Mojolicious web application to upload stock center data; using Plupload.
+
+## Getting started
+
+
+## Deployment

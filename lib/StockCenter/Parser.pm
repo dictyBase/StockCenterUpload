@@ -3,7 +3,7 @@ package StockCenter::Parser;
 
 use strict;
 
-use Mojo::Base 'Mojolicious::Controller';
+#use Mojo::Base 'Mojolicious::Controller';
 use Moose::Role;
 use namespace::autoclean;
 use Spreadsheet::ParseExcel;
@@ -13,7 +13,6 @@ has 'file' => (
     isa     => 'Str',
     trigger => sub {
         my ( $self, $file ) = @_;
-        $self->app->log->debug($file);
         my $workbook = $self->parser->parse($file);
         if ( !$workbook ) {
             die $self->parser->error, " :problem\n";
@@ -25,8 +24,7 @@ has 'file' => (
         $self->row_max($rmax);
         $self->col_max($cmax);
         $self->spreadsheet($sp);
-    },
-    required => 1
+    }
 );
 
 has 'parser' => (
