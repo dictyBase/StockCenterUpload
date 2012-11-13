@@ -1,6 +1,14 @@
 language: perl
 perl:
+    - "5.12"
     - "5.10"
+
+branches:
+  only:
+    - feature/redesign-arch
 
 notifications:
     email: false
+    
+env: 
+    PERL_CPANM_OPT="--notest"
