@@ -111,6 +111,57 @@
          "target" : "Algorithm::Diff",
          "version" : "1.1902"
       },
+      "Any::Moose" : {
+         "dist" : "Any-Moose-0.18",
+         "mymeta" : {
+            "abstract" : "use Moose or Mouse modules",
+            "author" : [
+               "Shawn M Moore <sartak@gmail.com>",
+               "Florian Ragwitz <rafl@debian.org>",
+               "Stevan Little <stevan@iinteractive.com>",
+               "Tokuhiro Matsuno <tokuhirom@gmail.com>",
+               "Goro Fuji <gfuji@cpan.org>",
+               "Ricardo Signes <rjbs@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112150, CPAN::Meta::Converter version 2.120921",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Any-Moose",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {}
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.30"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Moose" : 0
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.18"
+         },
+         "name" : "Any::Moose",
+         "pathname" : "S/SA/SARTAK/Any-Moose-0.18.tar.gz",
+         "provides" : {
+            "Any::Moose" : {
+               "file" : "Any/Moose.pm",
+               "version" : "0.18"
+            }
+         },
+         "target" : "Any::Moose",
+         "version" : "0.18"
+      },
       "B::Hooks::EndOfScope" : {
          "dist" : "B-Hooks-EndOfScope-0.11",
          "mymeta" : {
@@ -338,6 +389,293 @@
          },
          "target" : "B::Hooks::EndOfScope",
          "version" : "0.11"
+      },
+      "B::Hooks::OP::Annotation" : {
+         "dist" : "B-Hooks-OP-Annotation-0.44",
+         "mymeta" : {
+            "abstract" : "annotate and delegate hooked OPs",
+            "author" : [
+               "chocolateboy <chocolate@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.55_02, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "B-Hooks-OP-Annotation",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::Depends" : "0.304",
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "ExtUtils::Depends" : "0.304"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "repository" : {
+                  "url" : "http://github.com/chocolateboy/B-Hooks-OP-Annotation"
+               }
+            },
+            "version" : "0.44"
+         },
+         "name" : "B::Hooks::OP::Annotation",
+         "pathname" : "C/CH/CHOCOLATE/B-Hooks-OP-Annotation-0.44.tar.gz",
+         "provides" : {
+            "B::Hooks::OP::Annotation" : {
+               "file" : "B/Hooks/OP/Annotation.pm",
+               "version" : "0.44"
+            },
+            "B::Hooks::OP::Annotation::Install::Files" : {
+               "file" : "B/Hooks/OP/Annotation/Install/Files.pm"
+            }
+         },
+         "target" : "B::Hooks::OP::Annotation",
+         "version" : "0.44"
+      },
+      "B::Hooks::OP::Check" : {
+         "dist" : "B-Hooks-OP-Check-0.19",
+         "mymeta" : {
+            "abstract" : "Wrap OP check callbacks",
+            "author" : [
+               "Florian Ragwitz <rafl@debian.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 1.01, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "B-Hooks-OP-Check",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t",
+                  "xt"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::Depends" : "0.302",
+                     "ExtUtils::MakeMaker" : "6.42",
+                     "Test::More" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::Depends" : "0.302",
+                     "ExtUtils::MakeMaker" : "6.42"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "parent" : 0,
+                     "perl" : "5.008001"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=B-Hooks-OP-Check"
+               },
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://lake.fysh.org/zefram/B-Hooks-OP-Check.git"
+               }
+            },
+            "version" : "0.19"
+         },
+         "name" : "B::Hooks::OP::Check",
+         "pathname" : "Z/ZE/ZEFRAM/B-Hooks-OP-Check-0.19.tar.gz",
+         "provides" : {
+            "B::Hooks::OP::Check" : {
+               "file" : "B/Hooks/OP/Check.pm",
+               "version" : "0.19"
+            },
+            "B::Hooks::OP::Check::Install::Files" : {
+               "file" : "B/Hooks/OP/Check/Install/Files.pm"
+            }
+         },
+         "target" : "B::Hooks::OP::Check",
+         "version" : "0.19"
+      },
+      "B::Hooks::OP::Check::EntersubForCV" : {
+         "dist" : "B-Hooks-OP-Check-EntersubForCV-0.09",
+         "mymeta" : {
+            "abstract" : "Invoke callbacks on construction of entersub OPs for certain CVs",
+            "author" : [
+               "Florian Ragwitz <rafl@debian.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 1.01, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "B-Hooks-OP-Check-EntersubForCV",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t",
+                  "xt"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check" : "0.19",
+                     "B::Utils" : "0.19",
+                     "ExtUtils::Depends" : 0,
+                     "ExtUtils::MakeMaker" : "6.42"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check" : "0.19",
+                     "B::Utils" : "0.19",
+                     "ExtUtils::Depends" : 0,
+                     "ExtUtils::MakeMaker" : "6.42"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check" : "0.19",
+                     "B::Utils" : "0.19",
+                     "Scalar::Util" : 0,
+                     "parent" : 0
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=B-Hooks-OP-Check-EntersubForCV"
+               },
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://lake.fysh.org/zefram/B-Hooks-OP-Check-EntersubForCV.git"
+               }
+            },
+            "version" : "0.09"
+         },
+         "name" : "B::Hooks::OP::Check::EntersubForCV",
+         "pathname" : "Z/ZE/ZEFRAM/B-Hooks-OP-Check-EntersubForCV-0.09.tar.gz",
+         "provides" : {
+            "B::Hooks::OP::Check::EntersubForCV" : {
+               "file" : "B/Hooks/OP/Check/EntersubForCV.pm",
+               "version" : "0.09"
+            },
+            "B::Hooks::OP::Check::EntersubForCV::Install::Files" : {
+               "file" : "B/Hooks/OP/Check/EntersubForCV/Install/Files.pm"
+            }
+         },
+         "target" : "B::Hooks::OP::Check::EntersubForCV",
+         "version" : "0.09"
+      },
+      "B::Utils" : {
+         "dist" : "B-Utils-0.21",
+         "mymeta" : {
+            "abstract" : "Helper functions for op tree manipulation",
+            "author" : [
+               "Josh Jore <jjore@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.112621, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "B-Utils",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::CBuilder" : 0,
+                     "ExtUtils::Depends" : "0.301"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Exporter" : 0,
+                     "ExtUtils::CBuilder" : 0,
+                     "Scalar::Util" : 0,
+                     "Task::Weaken" : 0,
+                     "Test::More" : 0,
+                     "perl" : "5.006"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=B-Utils"
+               },
+               "homepage" : "http://search.cpan.org/dist/B-Utils",
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://github.com/jbenjore/b-utils.git"
+               }
+            },
+            "version" : "0.21"
+         },
+         "name" : "B::Utils",
+         "pathname" : "J/JJ/JJORE/B-Utils-0.21.tar.gz",
+         "provides" : {
+            "B::Utils" : {
+               "file" : "B/Utils.pm",
+               "version" : "0.21"
+            },
+            "B::Utils::Install::Files" : {
+               "file" : "B/Utils/Install/Files.pm"
+            },
+            "B::Utils::OP" : {
+               "file" : "B/Utils/OP.pm",
+               "version" : "0.21"
+            }
+         },
+         "target" : "B::Utils",
+         "version" : "0.21"
       },
       "Bio" : {
          "dist" : "BioPerl-1.6.901",
@@ -9094,6 +9432,73 @@
          "target" : "Config::Any",
          "version" : "0.23"
       },
+      "Const::Fast" : {
+         "dist" : "Const-Fast-0.013",
+         "mymeta" : {
+            "abstract" : "Facility for creating read-only scalars, arrays, and hashes",
+            "author" : [
+               "Leon Timmermans <fawaka@gmail.com>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Dist::Zilla version 4.300021, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Const-Fast",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Data::Dumper" : 0,
+                     "File::Find" : 0,
+                     "File::Temp" : 0,
+                     "Test::Exception" : "0.29",
+                     "Test::More" : "0.88"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.30"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Carp" : 0,
+                     "Scalar::Util" : 0,
+                     "Storable" : 0,
+                     "Sub::Exporter" : 0,
+                     "Sub::Exporter::Progressive" : 0,
+                     "strict" : 0,
+                     "warnings" : 0
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Const-Fast"
+               },
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://github.com/Leont/const-fast.git"
+               }
+            },
+            "version" : "0.013"
+         },
+         "name" : "Const::Fast",
+         "pathname" : "L/LE/LEONT/Const-Fast-0.013.tar.gz",
+         "provides" : {
+            "Const::Fast" : {
+               "file" : "Const/Fast.pm",
+               "version" : "0.013"
+            }
+         },
+         "target" : "Const::Fast",
+         "version" : "0.013"
+      },
       "Context::Preserve" : {
          "dist" : "Context-Preserve-0.01",
          "mymeta" : {
@@ -10852,6 +11257,54 @@
          },
          "target" : "Data::Stag",
          "version" : "0.11"
+      },
+      "Data::Alias" : {
+         "dist" : "Data-Alias-1.16",
+         "mymeta" : {
+            "abstract" : "Comprehensive set of aliasing operations",
+            "author" : [
+               "Matthijs van Duin <xmath@cpan.org>",
+               "Andrew Main (Zefram) <zefram@fysh.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 0.67, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Data-Alias",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {}
+               }
+            },
+            "release_status" : "stable",
+            "version" : "1.16"
+         },
+         "name" : "Data::Alias",
+         "pathname" : "Z/ZE/ZEFRAM/Data-Alias-1.16.tar.gz",
+         "provides" : {
+            "Data::Alias" : {
+               "file" : "Data/Alias.pm",
+               "version" : "1.16"
+            }
+         },
+         "target" : "Data::Alias",
+         "version" : "1.16"
       },
       "Data::Compare" : {
          "dist" : "Data-Compare-1.22",
@@ -17804,6 +18257,152 @@
          "target" : "DateTimeX::Easy",
          "version" : "0.089"
       },
+      "Devel::BeginLift" : {
+         "dist" : "Devel-BeginLift-0.001003",
+         "mymeta" : {
+            "abstract" : "make selected sub calls evaluate at compile time",
+            "author" : [
+               "Matt S Trout - <mst@shadowcatsystems.co.uk>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 0.97, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Devel-BeginLift",
+            "no_index" : {
+               "directory" : [
+                  "example",
+                  "inc",
+                  "t"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check::EntersubForCV" : 0,
+                     "ExtUtils::Depends" : 0,
+                     "ExtUtils::MakeMaker" : "6.42",
+                     "Test::More" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check::EntersubForCV" : 0,
+                     "ExtUtils::Depends" : 0,
+                     "ExtUtils::MakeMaker" : "6.42"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check::EntersubForCV" : "0.03",
+                     "perl" : "5.008001"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ]
+            },
+            "version" : "0.001003"
+         },
+         "name" : "Devel::BeginLift",
+         "pathname" : "F/FL/FLORA/Devel-BeginLift-0.001003.tar.gz",
+         "provides" : {
+            "Devel::BeginLift" : {
+               "file" : "Devel/BeginLift.pm",
+               "version" : "0.001003"
+            }
+         },
+         "target" : "Devel::BeginLift",
+         "version" : "0.001003"
+      },
+      "Devel::Declare" : {
+         "dist" : "Devel-Declare-0.006011",
+         "mymeta" : {
+            "abstract" : "Adding keywords to perl, in perl",
+            "author" : [
+               "Matt S Trout - <mst@shadowcat.co.uk> - original author"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 1.04, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Devel-Declare",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check" : "0.19",
+                     "ExtUtils::Depends" : "0.302",
+                     "ExtUtils::MakeMaker" : "6.62",
+                     "Test::More" : "0.88"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "B::Hooks::OP::Check" : "0.19",
+                     "ExtUtils::Depends" : "0.302",
+                     "ExtUtils::MakeMaker" : "6.62"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "B::Hooks::EndOfScope" : "0.05",
+                     "B::Hooks::OP::Check" : "0.19",
+                     "Scalar::Util" : "1.11",
+                     "Sub::Name" : 0,
+                     "perl" : "5.008001"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://github.com/rafl/devel-declare.git"
+               }
+            },
+            "version" : "0.006011"
+         },
+         "name" : "Devel::Declare",
+         "pathname" : "Z/ZE/ZEFRAM/Devel-Declare-0.006011.tar.gz",
+         "provides" : {
+            "Devel::Declare" : {
+               "file" : "Devel/Declare.pm",
+               "version" : "0.006011"
+            },
+            "Devel::Declare::Context::Simple" : {
+               "file" : "Devel/Declare/Context/Simple.pm",
+               "version" : "0.006011"
+            },
+            "Devel::Declare::MethodInstaller::Simple" : {
+               "file" : "Devel/Declare/MethodInstaller/Simple.pm",
+               "version" : "0.006011"
+            }
+         },
+         "target" : "Devel::Declare::MethodInstaller::Simple",
+         "version" : "0.006011"
+      },
       "Devel::GlobalDestruction" : {
          "dist" : "Devel-GlobalDestruction-0.09",
          "mymeta" : {
@@ -17868,6 +18467,65 @@
          },
          "target" : "Devel::GlobalDestruction",
          "version" : "0.09"
+      },
+      "Devel::Pragma" : {
+         "dist" : "Devel-Pragma-0.54",
+         "mymeta" : {
+            "abstract" : "helper functions for developers of lexical pragmas",
+            "author" : [
+               "chocolateboy <chocolate@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.56, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Devel-Pragma",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "B::Hooks::OP::Annotation" : "0.43",
+                     "B::Hooks::OP::Check" : "0.18",
+                     "ExtUtils::Depends" : "0.302",
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "B::Hooks::EndOfScope" : "0.09",
+                     "B::Hooks::OP::Annotation" : "0.43",
+                     "B::Hooks::OP::Check" : "0.18"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.54"
+         },
+         "name" : "Devel::Pragma",
+         "pathname" : "C/CH/CHOCOLATE/Devel-Pragma-0.54.tar.gz",
+         "provides" : {
+            "Devel::Pragma" : {
+               "file" : "Devel/Pragma.pm",
+               "version" : "0.54"
+            }
+         },
+         "target" : "Devel::Pragma",
+         "version" : "0.54"
       },
       "Devel::StackTrace" : {
          "dist" : "Devel-StackTrace-1.27",
@@ -18707,6 +19365,76 @@
          "target" : "ExtUtils::CBuilder",
          "version" : "0.280205"
       },
+      "ExtUtils::Depends" : {
+         "dist" : "ExtUtils-Depends-0.304",
+         "mymeta" : {
+            "abstract" : "unknown",
+            "author" : [
+               "unknown"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.56, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "keywords" : [
+               "XS",
+               "XS extensions",
+               "dependency"
+            ],
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "ExtUtils-Depends",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ],
+               "package" : [
+                  "ExtUtils::MM"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Data::Dumper" : 0,
+                     "File::Spec" : 0,
+                     "IO::File" : 0,
+                     "perl" : "5.006"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "repository" : {
+                  "url" : "http://git.gnome.org/cgit/perl-ExtUtils-Depends"
+               }
+            },
+            "version" : "0.304"
+         },
+         "name" : "ExtUtils::Depends",
+         "pathname" : "F/FL/FLORA/ExtUtils-Depends-0.304.tar.gz",
+         "provides" : {
+            "ExtUtils::Depends" : {
+               "file" : "ExtUtils/Depends.pm",
+               "version" : "0.304"
+            }
+         },
+         "target" : "ExtUtils::Depends",
+         "version" : "0.304"
+      },
       "ExtUtils::MakeMaker" : {
          "dist" : "ExtUtils-MakeMaker-6.62",
          "mymeta" : {
@@ -19052,6 +19780,74 @@
          },
          "target" : "File::Find::Rule",
          "version" : "0.33"
+      },
+      "File::Remove" : {
+         "dist" : "File-Remove-1.52",
+         "mymeta" : {
+            "abstract" : "Remove files and directories",
+            "author" : [
+               "Adam Kennedy <adamk@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 1.06, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "File-Remove",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t",
+                  "xt"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.36",
+                     "Test::More" : "0.42"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.36"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Cwd" : "3.29",
+                     "File::Spec" : "3.29",
+                     "perl" : "5.00503"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "url" : "http://svn.ali.as/cpan/trunk/File-Remove"
+               },
+               "x_ChangeLog" : "http://fisheye2.atlassian.com/changelog/cpan/trunk/File-Remove"
+            },
+            "version" : "1.52",
+            "x_module_name" : "File::Remove"
+         },
+         "name" : "File::Remove",
+         "pathname" : "A/AD/ADAMK/File-Remove-1.52.tar.gz",
+         "provides" : {
+            "File::Remove" : {
+               "file" : "File/Remove.pm",
+               "version" : "1.52"
+            }
+         },
+         "target" : "File::Remove",
+         "version" : "1.52"
       },
       "File::ShareDir" : {
          "dist" : "File-ShareDir-1.03",
@@ -19524,6 +20320,70 @@
          },
          "target" : "Hash::Merge",
          "version" : "0.12"
+      },
+      "Hook::LexWrap" : {
+         "dist" : "Hook-LexWrap-0.24",
+         "mymeta" : {
+            "abstract" : "Lexically scoped subroutine wrappers",
+            "author" : [
+               "Damian Conway (damian@conway.org)"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Hook-LexWrap",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Test::More" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "perl" : "5.006"
+                  }
+               }
+            },
+            "provides" : {
+               "Hook::LexWrap" : {
+                  "file" : "lib/Hook/LexWrap.pm",
+                  "version" : "0.24"
+               },
+               "Hook::LexWrap::Cleanup" : {
+                  "file" : "lib/Hook/LexWrap.pm",
+                  "version" : 0
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "url" : "http://github.com/chorny/Hook-LexWrap"
+               }
+            },
+            "version" : "0.24"
+         },
+         "name" : "Hook::LexWrap",
+         "pathname" : "C/CH/CHORNY/Hook-LexWrap-0.24.tar.gz",
+         "provides" : {
+            "Hook::LexWrap" : {
+               "file" : "Hook/LexWrap.pm",
+               "version" : "0.24"
+            },
+            "Hook::LexWrap::Cleanup" : {
+               "file" : "Hook/LexWrap.pm"
+            }
+         },
+         "target" : "Hook::LexWrap",
+         "version" : "0.24"
       },
       "IO::String" : {
          "dist" : "IO-String-1.08",
@@ -20100,6 +20960,103 @@
          },
          "target" : "Math::Round",
          "version" : "0.06"
+      },
+      "Method::Signatures" : {
+         "dist" : "Method-Signatures-20120523",
+         "mymeta" : {
+            "abstract" : "method and function declarations with signatures and no source filter",
+            "author" : [
+               "Michael G Schwern <schwern@pobox.com>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Method-Signatures",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Module::Build" : "0.26",
+                     "Test::Builder" : "0.82",
+                     "Test::Exception" : "0.29",
+                     "Test::More" : "0.82",
+                     "Test::Warn" : "0.10"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "Module::Build" : "0.26"
+                  }
+               },
+               "runtime" : {
+                  "recommends" : {
+                     "Moose" : "0.96"
+                  },
+                  "requires" : {
+                     "Any::Moose" : "0.11",
+                     "Const::Fast" : "0.006",
+                     "Data::Alias" : "1.08",
+                     "Devel::BeginLift" : "0.001001",
+                     "Devel::Declare" : "0.006002",
+                     "Devel::Declare::MethodInstaller::Simple" : "0.006002",
+                     "Devel::Pragma" : "0.40",
+                     "Mouse" : "0.64",
+                     "PPI" : "1.203",
+                     "Sub::Name" : "0.03",
+                     "perl" : "v5.8.1"
+                  }
+               }
+            },
+            "provides" : {
+               "Method::Signatures" : {
+                  "file" : "lib/Method/Signatures.pm",
+                  "version" : "20120523"
+               },
+               "Method::Signatures::Modifiers" : {
+                  "file" : "lib/Method/Signatures/Modifiers.pm",
+                  "version" : "20120523"
+               },
+               "Method::Signatures::Parser" : {
+                  "file" : "lib/Method/Signatures/Parser.pm",
+                  "version" : 0
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Method-Signatures"
+               },
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "url" : "https://github.com/schwern/method-signatures/tree"
+               }
+            },
+            "version" : "20120523"
+         },
+         "name" : "Method::Signatures",
+         "pathname" : "B/BA/BAREFOOT/Method-Signatures-20120523.tar.gz",
+         "provides" : {
+            "Method::Signatures" : {
+               "file" : "Method/Signatures.pm",
+               "version" : "20120523"
+            },
+            "Method::Signatures::Modifiers" : {
+               "file" : "Method/Signatures/Modifiers.pm",
+               "version" : "20120523"
+            },
+            "Method::Signatures::Parser" : {
+               "file" : "Method/Signatures/Parser.pm"
+            }
+         },
+         "target" : "Method::Signatures",
+         "version" : "20120523"
       },
       "Module::Build" : {
          "dist" : "Module-Build-0.4003",
@@ -22674,6 +23631,167 @@
          "target" : "MooseX::Types",
          "version" : "0.35"
       },
+      "Mouse" : {
+         "dist" : "Mouse-1.02",
+         "mymeta" : {
+            "abstract" : "Moose minus the antlers",
+            "author" : [
+               "Shawn M Moore <sartak at gmail.com>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 1.06, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Mouse",
+            "no_index" : {
+               "directory" : [
+                  "example",
+                  "inc",
+                  "t",
+                  "xt"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Devel::PPPort" : "3.19",
+                     "ExtUtils::MakeMaker" : "6.59",
+                     "ExtUtils::ParseXS" : "2.21",
+                     "Test::More" : "0.88"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "Devel::PPPort" : "3.19",
+                     "ExtUtils::MakeMaker" : "6.59",
+                     "ExtUtils::ParseXS" : "2.21"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Scalar::Util" : "1.14",
+                     "XSLoader" : "0.02",
+                     "perl" : "5.006002"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://github.com/gfx/p5-Mouse.git"
+               }
+            },
+            "version" : "1.02",
+            "x_module_name" : "Mouse"
+         },
+         "name" : "Mouse",
+         "pathname" : "G/GF/GFUJI/Mouse-1.02.tar.gz",
+         "provides" : {
+            "Mouse" : {
+               "file" : "Mouse.pm",
+               "version" : "1.02"
+            },
+            "Mouse::Exporter" : {
+               "file" : "Mouse/Exporter.pm"
+            },
+            "Mouse::Meta::Attribute" : {
+               "file" : "Mouse/Meta/Attribute.pm"
+            },
+            "Mouse::Meta::Class" : {
+               "file" : "Mouse/Meta/Class.pm"
+            },
+            "Mouse::Meta::Method" : {
+               "file" : "Mouse/Meta/Method.pm"
+            },
+            "Mouse::Meta::Method::Accessor" : {
+               "file" : "Mouse/Meta/Method/Accessor.pm"
+            },
+            "Mouse::Meta::Method::Constructor" : {
+               "file" : "Mouse/Meta/Method/Constructor.pm"
+            },
+            "Mouse::Meta::Method::Delegation" : {
+               "file" : "Mouse/Meta/Method/Delegation.pm"
+            },
+            "Mouse::Meta::Method::Destructor" : {
+               "file" : "Mouse/Meta/Method/Destructor.pm"
+            },
+            "Mouse::Meta::Module" : {
+               "file" : "Mouse/Meta/Module.pm"
+            },
+            "Mouse::Meta::Role" : {
+               "file" : "Mouse/Meta/Role.pm"
+            },
+            "Mouse::Meta::Role::Application" : {
+               "file" : "Mouse/Meta/Role/Application.pm"
+            },
+            "Mouse::Meta::Role::Application::RoleSummation" : {
+               "file" : "Mouse/Tiny.pm"
+            },
+            "Mouse::Meta::Role::Composite" : {
+               "file" : "Mouse/Meta/Role/Composite.pm"
+            },
+            "Mouse::Meta::Role::Method" : {
+               "file" : "Mouse/Meta/Role/Method.pm"
+            },
+            "Mouse::Meta::TypeConstraint" : {
+               "file" : "Mouse/Meta/TypeConstraint.pm"
+            },
+            "Mouse::Object" : {
+               "file" : "Mouse/Object.pm"
+            },
+            "Mouse::PurePerl" : {
+               "file" : "Mouse/PurePerl.pm"
+            },
+            "Mouse::Role" : {
+               "file" : "Mouse/Role.pm",
+               "version" : "1.02"
+            },
+            "Mouse::Spec" : {
+               "file" : "Mouse/Spec.pm",
+               "version" : "1.02"
+            },
+            "Mouse::Tiny" : {
+               "file" : "Mouse/Tiny.pm",
+               "version" : "1.02"
+            },
+            "Mouse::TypeRegistry" : {
+               "file" : "Mouse/TypeRegistry.pm"
+            },
+            "Mouse::Util" : {
+               "file" : "Mouse/Util.pm",
+               "version" : "1.02"
+            },
+            "Mouse::Util::MetaRole" : {
+               "file" : "Mouse/Util/MetaRole.pm"
+            },
+            "Mouse::Util::TypeConstraints" : {
+               "file" : "Mouse/Util/TypeConstraints.pm"
+            },
+            "Squirrel" : {
+               "file" : "Squirrel.pm"
+            },
+            "Squirrel::Role" : {
+               "file" : "Squirrel/Role.pm"
+            },
+            "Test::Mouse" : {
+               "file" : "Test/Mouse.pm"
+            },
+            "ouse" : {
+               "file" : "ouse.pm"
+            }
+         },
+         "target" : "Mouse",
+         "version" : "1.02"
+      },
       "Number::Compare" : {
          "dist" : "Number-Compare-0.03",
          "mymeta" : {
@@ -22795,6 +23913,446 @@
          },
          "target" : "OLE::Storage_Lite",
          "version" : "0.19"
+      },
+      "PPI" : {
+         "dist" : "PPI-1.215",
+         "mymeta" : {
+            "abstract" : "Parse, Analyze and Manipulate Perl (without perl)",
+            "author" : [
+               "Adam Kennedy <adamk@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 1.00, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "PPI",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t",
+                  "xt"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Class::Inspector" : "1.22",
+                     "ExtUtils::MakeMaker" : "6.42",
+                     "File::Remove" : "1.42",
+                     "Test::More" : "0.86",
+                     "Test::NoWarnings" : "0.084",
+                     "Test::Object" : "0.07",
+                     "Test::SubCalls" : "1.07"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.42"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Clone" : "0.30",
+                     "Digest::MD5" : "2.35",
+                     "File::Spec" : "0.84",
+                     "IO::String" : "1.07",
+                     "List::MoreUtils" : "0.16",
+                     "List::Util" : "1.20",
+                     "Params::Util" : "1.00",
+                     "Storable" : "2.17",
+                     "Task::Weaken" : 0,
+                     "perl" : "5.006"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "url" : "http://svn.ali.as/cpan/trunk/PPI"
+               },
+               "x_ChangeLog" : "http://fisheye2.atlassian.com/changelog/cpan/trunk/PPI"
+            },
+            "version" : "1.215",
+            "x_module_name" : "PPI"
+         },
+         "name" : "PPI",
+         "pathname" : "A/AD/ADAMK/PPI-1.215.tar.gz",
+         "provides" : {
+            "PPI" : {
+               "file" : "PPI.pm",
+               "version" : "1.215"
+            },
+            "PPI::Cache" : {
+               "file" : "PPI/Cache.pm",
+               "version" : "1.215"
+            },
+            "PPI::Document" : {
+               "file" : "PPI/Document.pm",
+               "version" : "1.215"
+            },
+            "PPI::Document::File" : {
+               "file" : "PPI/Document/File.pm",
+               "version" : "1.215"
+            },
+            "PPI::Document::Fragment" : {
+               "file" : "PPI/Document/Fragment.pm",
+               "version" : "1.215"
+            },
+            "PPI::Document::Normalized" : {
+               "file" : "PPI/Document/Normalized.pm",
+               "version" : "1.215"
+            },
+            "PPI::Dumper" : {
+               "file" : "PPI/Dumper.pm",
+               "version" : "1.215"
+            },
+            "PPI::Element" : {
+               "file" : "PPI/Element.pm",
+               "version" : "1.215"
+            },
+            "PPI::Exception" : {
+               "file" : "PPI/Exception.pm",
+               "version" : "1.215"
+            },
+            "PPI::Exception::ParserRejection" : {
+               "file" : "PPI/Exception/ParserRejection.pm",
+               "version" : "1.215"
+            },
+            "PPI::Exception::ParserTimeout" : {
+               "file" : "PPI/Exception/ParserTimeout.pm",
+               "version" : "1.215"
+            },
+            "PPI::Find" : {
+               "file" : "PPI/Find.pm",
+               "version" : "1.215"
+            },
+            "PPI::Lexer" : {
+               "file" : "PPI/Lexer.pm",
+               "version" : "1.215"
+            },
+            "PPI::Node" : {
+               "file" : "PPI/Node.pm",
+               "version" : "1.215"
+            },
+            "PPI::Normal" : {
+               "file" : "PPI/Normal.pm",
+               "version" : "1.215"
+            },
+            "PPI::Normal::Standard" : {
+               "file" : "PPI/Normal/Standard.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement" : {
+               "file" : "PPI/Statement.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Break" : {
+               "file" : "PPI/Statement/Break.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Compound" : {
+               "file" : "PPI/Statement/Compound.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Data" : {
+               "file" : "PPI/Statement/Data.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::End" : {
+               "file" : "PPI/Statement/End.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Expression" : {
+               "file" : "PPI/Statement/Expression.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Given" : {
+               "file" : "PPI/Statement/Given.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Include" : {
+               "file" : "PPI/Statement/Include.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Include::Perl6" : {
+               "file" : "PPI/Statement/Include/Perl6.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Null" : {
+               "file" : "PPI/Statement/Null.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Package" : {
+               "file" : "PPI/Statement/Package.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Scheduled" : {
+               "file" : "PPI/Statement/Scheduled.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Sub" : {
+               "file" : "PPI/Statement/Sub.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Unknown" : {
+               "file" : "PPI/Statement/Unknown.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::UnmatchedBrace" : {
+               "file" : "PPI/Statement/UnmatchedBrace.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::Variable" : {
+               "file" : "PPI/Statement/Variable.pm",
+               "version" : "1.215"
+            },
+            "PPI::Statement::When" : {
+               "file" : "PPI/Statement/When.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure" : {
+               "file" : "PPI/Structure.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::Block" : {
+               "file" : "PPI/Structure/Block.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::Condition" : {
+               "file" : "PPI/Structure/Condition.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::Constructor" : {
+               "file" : "PPI/Structure/Constructor.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::For" : {
+               "file" : "PPI/Structure/For.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::Given" : {
+               "file" : "PPI/Structure/Given.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::List" : {
+               "file" : "PPI/Structure/List.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::Subscript" : {
+               "file" : "PPI/Structure/Subscript.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::Unknown" : {
+               "file" : "PPI/Structure/Unknown.pm",
+               "version" : "1.215"
+            },
+            "PPI::Structure::When" : {
+               "file" : "PPI/Structure/When.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token" : {
+               "file" : "PPI/Token.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::ArrayIndex" : {
+               "file" : "PPI/Token/ArrayIndex.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Attribute" : {
+               "file" : "PPI/Token/Attribute.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::BOM" : {
+               "file" : "PPI/Token/BOM.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Cast" : {
+               "file" : "PPI/Token/Cast.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Comment" : {
+               "file" : "PPI/Token/Comment.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::DashedWord" : {
+               "file" : "PPI/Token/DashedWord.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Data" : {
+               "file" : "PPI/Token/Data.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::End" : {
+               "file" : "PPI/Token/End.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::HereDoc" : {
+               "file" : "PPI/Token/HereDoc.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Label" : {
+               "file" : "PPI/Token/Label.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Magic" : {
+               "file" : "PPI/Token/Magic.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number" : {
+               "file" : "PPI/Token/Number.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number::Binary" : {
+               "file" : "PPI/Token/Number/Binary.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number::Exp" : {
+               "file" : "PPI/Token/Number/Exp.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number::Float" : {
+               "file" : "PPI/Token/Number/Float.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number::Hex" : {
+               "file" : "PPI/Token/Number/Hex.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number::Octal" : {
+               "file" : "PPI/Token/Number/Octal.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Number::Version" : {
+               "file" : "PPI/Token/Number/Version.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Operator" : {
+               "file" : "PPI/Token/Operator.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Pod" : {
+               "file" : "PPI/Token/Pod.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Prototype" : {
+               "file" : "PPI/Token/Prototype.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Quote" : {
+               "file" : "PPI/Token/Quote.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Quote::Double" : {
+               "file" : "PPI/Token/Quote/Double.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Quote::Interpolate" : {
+               "file" : "PPI/Token/Quote/Interpolate.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Quote::Literal" : {
+               "file" : "PPI/Token/Quote/Literal.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Quote::Single" : {
+               "file" : "PPI/Token/Quote/Single.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::QuoteLike" : {
+               "file" : "PPI/Token/QuoteLike.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::QuoteLike::Backtick" : {
+               "file" : "PPI/Token/QuoteLike/Backtick.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::QuoteLike::Command" : {
+               "file" : "PPI/Token/QuoteLike/Command.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::QuoteLike::Readline" : {
+               "file" : "PPI/Token/QuoteLike/Readline.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::QuoteLike::Regexp" : {
+               "file" : "PPI/Token/QuoteLike/Regexp.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::QuoteLike::Words" : {
+               "file" : "PPI/Token/QuoteLike/Words.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Regexp" : {
+               "file" : "PPI/Token/Regexp.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Regexp::Match" : {
+               "file" : "PPI/Token/Regexp/Match.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Regexp::Substitute" : {
+               "file" : "PPI/Token/Regexp/Substitute.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Regexp::Transliterate" : {
+               "file" : "PPI/Token/Regexp/Transliterate.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Separator" : {
+               "file" : "PPI/Token/Separator.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Structure" : {
+               "file" : "PPI/Token/Structure.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Symbol" : {
+               "file" : "PPI/Token/Symbol.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Unknown" : {
+               "file" : "PPI/Token/Unknown.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Whitespace" : {
+               "file" : "PPI/Token/Whitespace.pm",
+               "version" : "1.215"
+            },
+            "PPI::Token::Word" : {
+               "file" : "PPI/Token/Word.pm",
+               "version" : "1.215"
+            },
+            "PPI::Tokenizer" : {
+               "file" : "PPI/Tokenizer.pm",
+               "version" : "1.215"
+            },
+            "PPI::Transform" : {
+               "file" : "PPI/Transform.pm",
+               "version" : "1.215"
+            },
+            "PPI::Transform::UpdateCopyright" : {
+               "file" : "PPI/Transform/UpdateCopyright.pm",
+               "version" : "1.215"
+            },
+            "PPI::Util" : {
+               "file" : "PPI/Util.pm",
+               "version" : "1.215"
+            },
+            "PPI::XSAccessor" : {
+               "file" : "PPI/XSAccessor.pm",
+               "version" : "1.215"
+            }
+         },
+         "target" : "PPI",
+         "version" : "1.215"
       },
       "Package::DeprecationManager" : {
          "dist" : "Package-DeprecationManager-0.13",
@@ -26892,6 +28450,66 @@
          "target" : "Test::NoWarnings",
          "version" : "1.04"
       },
+      "Test::Object" : {
+         "dist" : "Test-Object-0.07",
+         "mymeta" : {
+            "abstract" : "Thoroughly testing objects via registered handlers",
+            "author" : [
+               "Adam Kennedy <cpan@ali.as>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 0.64, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Test-Object",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Carp" : 0,
+                     "Exporter" : 0,
+                     "File::Spec" : "0.80",
+                     "Scalar::Util" : "1.16",
+                     "Test::Builder" : "0.33",
+                     "Test::Builder::Tester" : "1.02",
+                     "Test::More" : "0.42",
+                     "overload" : 0
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.07"
+         },
+         "name" : "Test::Object",
+         "pathname" : "A/AD/ADAMK/Test-Object-0.07.tar.gz",
+         "provides" : {
+            "Test::Object" : {
+               "file" : "Test/Object.pm",
+               "version" : "0.07"
+            },
+            "Test::Object::Test" : {
+               "file" : "Test/Object/Test.pm",
+               "version" : "0.07"
+            }
+         },
+         "target" : "Test::Object",
+         "version" : "0.07"
+      },
       "Test::Output" : {
          "dist" : "Test-Output-1.01",
          "mymeta" : {
@@ -27120,6 +28738,74 @@
          },
          "target" : "Test::More",
          "version" : "0.98"
+      },
+      "Test::SubCalls" : {
+         "dist" : "Test-SubCalls-1.09",
+         "mymeta" : {
+            "abstract" : "Track the number of times subs are called",
+            "author" : [
+               "Adam Kennedy <adamk@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Install version 0.85, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.112150",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Test-SubCalls",
+            "no_index" : {
+               "directory" : [
+                  "inc",
+                  "t"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : 0
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.42"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "6.42",
+                     "File::Spec" : "0.80",
+                     "Hook::LexWrap" : "0.20",
+                     "Test::Builder::Tester" : "1.02",
+                     "Test::More" : "0.42"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "url" : "http://svn.ali.as/cpan/trunk/Test-SubCalls"
+               },
+               "x_ChangeLog" : "http://fisheye2.atlassian.com/changelog/cpan/trunk/Test-SubCalls"
+            },
+            "version" : "1.09",
+            "x_module_name" : "Test::SubCalls"
+         },
+         "name" : "Test::SubCalls",
+         "pathname" : "A/AD/ADAMK/Test-SubCalls-1.09.tar.gz",
+         "provides" : {
+            "Test::SubCalls" : {
+               "file" : "Test/SubCalls.pm",
+               "version" : "1.09"
+            }
+         },
+         "target" : "Test::SubCalls",
+         "version" : "1.09"
       },
       "Test::Tester" : {
          "dist" : "Test-Tester-0.108",
