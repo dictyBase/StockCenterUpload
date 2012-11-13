@@ -1,4 +1,4 @@
-# Stock Center Upload  [![Build Status](https://travis-ci.org/[dictyBase]/[StockCenterUpload].png)](https://travis-ci.org/[dictyBase]/[StockCenterUpload])
+# Stock Center Upload [![Build Status](https://travis-ci.org/dictyBase/StockCenterUpload.png)](https://travis-ci.org/dictyBase/StockCenterUpload)
 
 A Mojolicious web application to upload stock center data; using Plupload.
 
@@ -28,6 +28,7 @@ OR to run one test at a time
 ./Build test --test_files t/01-row.t verbose=1
 ```
 
+<<<<<<< HEAD
 Tests can be run one-by-one using `App::prove`
 
 ```shell
