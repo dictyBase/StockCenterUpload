@@ -7,8 +7,6 @@ use warnings;
 use Mojo::Base 'Mojolicious::Controller';
 use Data::Dump qw/pp/;
 use StockCenter::Type::Strain;
-
-#use DBCon::Uploader;
 use File::Temp;
 
 sub new_record {
@@ -18,12 +16,14 @@ sub new_record {
 
 sub create {
     my ($self) = @_;
-    my $db = $self->upload_db;
-    my $sth
-        = $db->prepare("INSERT INTO uploaded_file(name, size) VALUES(?, ?)");
+    my $db     = $self->upload_db;
+    my $sth    = $db->prepare(
+        "INSERT INTO uploaded_file(file, size, type) VALUES(?, ?, ?)");
     my ($upload) = @{ $self->req->uploads };
     my $filename = $upload->filename;
-    $sth->execute( $filename, $upload->size );
+    my $type     = 'Strain';
+    my $filesize = $upload->size / 1000;
+    $sth->execute( $filename, $filesize . " KB", $type );
     my $id = $db->last_insert_id( "", "", "", "" );
 
     my $temp_file = File::Temp->new( SUFFIX => '.dat' );
@@ -35,30 +35,26 @@ sub create {
     $headers->content_type('text/plain');
 
     #$headers->location( $self->url_for("uploads/$id")->to_abs );
-
     my $file = $temp_file->filename;
 
  #my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
 
+ 	
     $self->app->log->debug('Parsing & loading');
-    my $parser = StockCenter::Type::Strain->new();
+    my $parser = StockCenter::Type::Strain->new;
     $parser->file($file);
-    my $adapter = $self->adapter;
+	my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
         my $row = $parser->next();
-		#$self->app->log->debug( $row->count );
-        for my $k ( $row->row_keys ) {
-            $self->app->log->debug( $k . " -> " . $row->get_row($k) );
-        }
-
-        #$adapter->insert($row);
+		#for my $k ( $row->row_keys ) {
+		#    $self->app->log->debug( $k . " -> " . $row->get_row($k) );
+		#}
+		#$parser->insert($row);
+        $adapter->insert_strain($row);
     }
     $self->rendered(201);
     return;
 
-}
-
-sub index {
 }
 
 sub search {
@@ -68,7 +64,7 @@ sub search {
     my $db     = $self->upload_db;
     my $sth
         = $db->prepare(
-        "SELECT name, size, created_at FROM uploaded_file LIMIT $offset,$limit"
+        "SELECT file, size, type, uploaded_on FROM uploaded_file LIMIT $offset,$limit"
         );
     my $cth     = $db->prepare("SELECT count(id) FROM uploaded_file");
     my ($total) = $db->selectrow_array($cth);

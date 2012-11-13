@@ -10,7 +10,7 @@ use StockCenter::Plugin::Adapter;
 sub startup {
     my $self = shift;
 
-    my $db = $self->home->rel_file('db/upload.db');
+    my $db = $self->home->rel_file('db/upload.sqlite');
     $self->plugin(
         'database',
         {   dsn    => "dbi:SQLite:dbname=$db",

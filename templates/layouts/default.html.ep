@@ -28,6 +28,12 @@
 		<%= javascript_include_tag 'stockcenter-ui' %>
 		
 		<%= content_for 'upload_datatable' %>		
+
+		<script>
+			$(function () {
+				$('#tabs').tab('show');
+			}
+		</script>
 	</head>
 
 	<body>
@@ -59,7 +65,7 @@
 						<p class="pull-left">Type of data</p>
 
 						<div class="controls span2">
-
+						<form>
 							<div class="btn-group btn-group-vertical" data-toggle="buttons-radio" id="data-types">
 								<button type="button" class="btn">Strain</button>						
 								<br>
@@ -69,6 +75,7 @@
 								<br>
 								<button type="button" class="btn">Plasmid Inventory</button>
 							</div> <!-- btn-group -->
+						</form>
 						</div> <!-- controls span2 -->
 					</div> <!-- control-group  -->
 				</div> <!-- span3 -->
@@ -76,7 +83,48 @@
 			</div> <!-- row -->
 			<br>
 			<div class="well">
-				<h3>Hints</h3>
+				<ul class="nav nav-tabs" id="tabs">
+					<li><a href="#strain" data-toggle="tab">Strain</a></li>
+					<li><a href="#strain_invent" data-toggle="tab">Strain Inventory</a></li>
+					<li><a href="#plasmid" data-toggle="tab">Plasmid</a></li>
+					<li><a href="#plasmid_invent" data-toggle="tab">Plasmid Inventory</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div class="tab-pane active" id="strain">
+						<h5>Supported headers</h5>
+						<p>Required:</p>
+						<ul>
+							<li>strain_name</li>
+							<li>genotype</li>
+							<li>species</li>
+						</ul>
+						<p>Optional:</p>
+						<ul>
+							<li>value</li>
+						</ul>
+						<p>You can download a smaple file here</p>
+					</div>
+					
+					<div class="tab-pane" id="strain_invent">
+						<h5>Supported headers</h5>
+						<ul>
+							<li>strain_descriptor</li>
+
+						</ul>
+					</div>
+
+					<div class="tab-pane" id="plasmid" >
+
+					</div>
+
+					<div class="tab-pane" id="palsmid_invent">
+
+					</div>
+
+				</div>
+
+				<!--<h3>Hints</h3>
 				<ul>
 					<li>Supports only Microsoft Excel (*.xls) file
 					<li>The input file does not accept headers
@@ -90,7 +138,7 @@
 						<li><b>color</b> (yellow)
 						<li><b>comments</b> (Application in beta)
 					</ul>
-				</ul>
+				</ul>-->
 			</div> <!-- well -->
 		</div> <!-- container -->
 	</body>

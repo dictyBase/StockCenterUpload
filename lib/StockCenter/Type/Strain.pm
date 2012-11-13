@@ -3,14 +3,11 @@ package StockCenter::Type::Strain;
 
 use strict;
 
-use DataAdapter::Oracle;
-use Mojo::Base 'Mojolicious::Controller';
 use Moose;
 
 use StockCenter::Parser::Row;
 with 'StockCenter::Parser';
 with 'StockCenter::Parser::Header';
-#with 'StockCenter::Parser::Row';
 
 sub validate_headers {
     my ($self) = @_;
@@ -34,14 +31,6 @@ sub next {
     }
     $self->curr_row( $self->curr_row + 1 );
     return $row;
-}
-
-sub insert {
-    my ( $self, $row ) = @_;
-
-    #$self->adp->schema
-    my $strain_data;
-
 }
 
 1;

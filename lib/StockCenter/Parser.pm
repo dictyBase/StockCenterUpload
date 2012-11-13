@@ -22,7 +22,7 @@ has 'file' => (
         my ( $cmin, $cmax ) = $sp->col_range();
         $self->curr_row(0);
         $self->row_max($rmax);
-        $self->col_max($cmax);
+        $self->col_max( $cmax + 1 );
         $self->spreadsheet($sp);
     }
 );
@@ -54,7 +54,8 @@ sub get_row {
     my $row;
     my $spreadsheet = $self->spreadsheet;
     for ( my $c = 0; $c < $self->col_max; $c++ ) {
-        $row = $row . $spreadsheet->get_cell( $row_num, $c );
+        my $cell = lc( $spreadsheet->get_cell( $row_num, $c )->value() );
+        $row = $row . $cell;
         $row = $row . "\t";
     }
     chomp($row);
@@ -67,33 +68,5 @@ sub has_next {
         return 1;
     }
 }
-
-# Method to return next entry as object of StockCenter::Parser::Row
-#sub next {
-#    my ($self)      = @_;
-#    my $curr_row    = $self->curr_row;
-#    my $row         = StockCenter::Parser::Row->new();
-#    my $spreadsheet = $self->spreadsheet;
-#
-#    if ( $self->curr_row == 0 && $self->headers->is_empty ) {
-#        $self->headers(
-#            StockCenter::Parser::Header->parse(
-#                $self->get_row( $self->curr_row )
-#            )
-#        );
-#    }
-#
-#    for my $key ( $self->header_keys ) {
-#        my $cell = $spreadsheet->get_cell( $curr_row, $key );
-#        next unless ($cell);
-#        my $meth_name = $self->get_value($key);
-#        my $value     = $cell->value();
-#        if ( $meth_name eq 'num_vials' ) {
-#            $value = int($value);
-#        }
-#        $row->$meth_name($value);
-#    }
-#    return $row;
-#}
 
 1;

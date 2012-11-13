@@ -25,6 +25,7 @@
 				<tr>
 					<th>File</th>
 					<th>Size</th>
+					<th>Type</th>
 					<th>Uploaded On</th>
 				</tr>
 			</thead>
