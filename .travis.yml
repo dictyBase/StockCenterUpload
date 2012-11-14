@@ -11,4 +11,4 @@ notifications:
     email: false
     
 env: 
-    PERL_CPANM_OPT="-v --prompt --notest"
+    PERL_CPANM_OPT="-v --notest"
