@@ -8,7 +8,7 @@ branches:
     - feature/redesign-arch
 
 before_install:
-    - "cpanm -n DBI"
+    - "cpanm -n DBI DB_File Data::Stag"
 
 notifications:
     email: false
