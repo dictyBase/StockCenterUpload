@@ -23,7 +23,7 @@ my $class = Module::Build->subclass(
 my $builder = $class->new(
     module_name  => 'StockCenter',
     dist_author  => 'Yogesh Pandit',
-    dist_version => '0.1.2',
+    dist_version => '0.1.4',
     dist_abstract =>
         'A Mojolicious web application for stock center data upload',
     license  => 'perl',
@@ -41,7 +41,10 @@ my $builder = $class->new(
         "DateTime::Format::Strptime"      => "1.4000",
         "Data::Dump"                      => "1.21",
         "Math::Base36"                    => "0.09",
-        "Math::BigInt"                    => "1.99"
+        "Math::BigInt"                    => "1.99",
+        "Test::More"                      => "",
+        "Test::Moose"                     => "",
+        "Test::Mojo"                      => ""
     },
     add_to_cleanup => ['StockCenter-*'],
     "script_files" => []

@@ -4,13 +4,9 @@ package DataAdapter::Oracle;
 use strict;
 use warnings;
 
-#use Moose;
 use Moose;
 use MOD::SGD;
 use MOD::SGD::StockCenterInventoryDual;
-use DateTime::Format::Strptime;
-
-#requires 'insert';
 
 has 'dsn' => (
     is            => 'rw',
@@ -48,6 +44,46 @@ has 'schema' => (
             $self->attribute );
     }
 );
+
+sub insert_strain {
+    my ( $self, $row ) = @_;
+    my $strain_data;
+    my @headers;
+    my $dual_rs
+        = $self->schema->resultset('StockCenterDual')
+        ->search( undef,
+        { select => ['STOCK_CENTER_SEQ.nextval'], as => ['id'], } );
+
+    my $data = $dual_rs->next;
+    for my $key ( $row->row_keys ) {
+        push( @headers,      $key );
+        push( @$strain_data, $row->get_row($key) );
+        print $key. "\t" . $row->get_row($key) . "\n";
+    }
+    print "\n";
+    if ( scalar @$strain_data > 0 ) {
+        my $id = $data->get_column('id');
+        unshift @headers,      "id";
+        unshift @$strain_data, $id;
+
+        #print scalar @$strain_data."\n";
+        #for ( my $i = 0; $i < @$strain_data; $i++ ) {
+        #    print $headers[$i] . "\t";
+        #    print @$strain_data[$i] . "\n";
+        #}
+        #print "\n";
+
+        $self->schema->txn_do(
+            sub {
+                $self->schema->resultset('StockCenter')
+                    ->populate( [ [@headers], [@$strain_data] ] );
+                print "Loaded ", scalar(@$strain_data),
+                    " strain data to Stock_Center\n";
+            }
+        );
+    }
+    return;
+}
 
 sub insert {
     my ( $self, $row ) = @_;
