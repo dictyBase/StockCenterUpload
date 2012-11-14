@@ -28,24 +28,21 @@ my $builder = $class->new(
         'A Mojolicious web application for stock center data upload',
     license  => 'perl',
     requires => {
-        "Moose"                           => "2.0602",
+        "Bio::Chado::Schema"              => "0.20000",
         "Moose::Util::TypeConstraints"    => "2.0602",
-        "Mojolicious"                     => "2.51",
         "Mojolicious::Plugin::Database"   => "1.05",
         "Mojolicious::Plugin::YamlConfig" => "0.1.5",
         "Spreadsheet::ParseExcel"         => "0.59",
         "namespace::autoclean"            => "0.13",
-        "DBD::Oracle"                     => "1.44",
         "DBIx::Class"                     => "0.08196",
         "YAML::Tiny"                      => "1.51",
         "DateTime::Format::Strptime"      => "1.4000",
         "Data::Dump"                      => "1.21",
         "Math::Base36"                    => "0.09",
         "Math::BigInt"                    => "1.99",
-        "Test::More"                      => "",
-        "Test::Moose"                     => "",
-        "Test::Mojo"                      => ""
+        "Test::More"                      => "0.98",
     },
+    recommends     => { "DBD::Oracle" => "1.44", },
     add_to_cleanup => ['StockCenter-*'],
     "script_files" => []
 );
