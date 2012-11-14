@@ -3,7 +3,6 @@ package StockCenter::Parser;
 
 use strict;
 
-#use Mojo::Base 'Mojolicious::Controller';
 use Moose::Role;
 use namespace::autoclean;
 use Spreadsheet::ParseExcel;
@@ -70,3 +69,26 @@ sub has_next {
 }
 
 1;
+
+=head1 NAME
+
+C<StockCenter::Parser> - A C<Moose::Role> for parsing stock center data from *.xls
+
+=head1 DESCRIPTION
+
+A C<Moose::Role> to parse, hold and iterate over a Excel spreadsheet
+
+=head1 SYNOPSIS
+
+	with 'StockCenter::Parser::Header'
+	
+	my $file = "sample.xls"; 
+	$self->file($file);
+	
+	print $self->has_spreadsheet; # 1|TRUE
+	while ($self->has_next()) {
+		print "has next"
+	}
+
+=over
+

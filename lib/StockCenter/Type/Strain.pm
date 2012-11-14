@@ -34,3 +34,29 @@ sub next {
 }
 
 1;
+
+=head1 NAME
+
+C<StockCenter::Type::Strain> - A class to parse strain data
+
+=head1 DESCRIPTION
+
+A class comsuming the Parser & Header role for strain data
+
+=head1 SYNOPSIS
+
+	use StockCenter::Type::Strain;
+	
+	my $parser = StockCenter::Type::Strain->new;
+	my $file = "sample.xls"; 
+	$parser->file($file);
+	
+	while ($parser->has_next()) {
+		my $row = $parser->next();
+		for my $key ($row->row_keys) {
+			print $key . "\t" . $row->get_row($key);
+		}
+	}
+
+=over
+
