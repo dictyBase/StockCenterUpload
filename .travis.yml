@@ -7,6 +7,9 @@ branches:
   only:
     - feature/redesign-arch
 
+before_install:
+    - "cpanm -n DBI"
+
 notifications:
     email: false
     
