@@ -65,7 +65,6 @@
 						<p class="pull-left">Type of data</p>
 
 						<div class="controls span2">
-						<form>
 							<div class="btn-group btn-group-vertical" data-toggle="buttons-radio" id="data-types">
 								<button type="button" class="btn">Strain</button>						
 								<br>
@@ -75,7 +74,6 @@
 								<br>
 								<button type="button" class="btn">Plasmid Inventory</button>
 							</div> <!-- btn-group -->
-						</form>
 						</div> <!-- controls span2 -->
 					</div> <!-- control-group  -->
 				</div> <!-- span3 -->
@@ -96,22 +94,32 @@
 						<p>Required:</p>
 						<ul>
 							<li>strain_name</li>
+							<li>strain_description</li>
 							<li>genotype</li>
 							<li>species</li>
+							<!--<li>strain_summary</li>
+							<li>strain_characteristics</li>-->
 						</ul>
 						<p>Optional:</p>
 						<ul>
-							<li>value</li>
+							<li>systematic_name</li>
+							<li>parental_strain</li>
+							<li>plasmid</li>
+							<li>mutagenesis_method</li>
+							<li>pubmedid</li>
+							<li>obtained_on</li>
+							<li>obtained_as</li>
+							<li>obtained_from</li>
 						</ul>
 						<p>You can download a smaple file here</p>
 					</div>
 					
 					<div class="tab-pane" id="strain_invent">
-						<h5>Supported headers</h5>
+						<!--<h5>Supported headers</h5>
 						<ul>
 							<li>strain_descriptor</li>
 
-						</ul>
+						</ul>-->
 					</div>
 
 					<div class="tab-pane" id="plasmid" >

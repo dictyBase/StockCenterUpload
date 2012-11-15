@@ -11,6 +11,16 @@ with 'StockCenter::Parser::Header';
 
 sub validate_headers {
     my ($self) = @_;
+    my %r = reverse $self->headers;
+    if ( !exists $r{'strain_name'} ) {
+        return 0;
+    }
+    elsif ( !exists $r{'genotype'} ) {
+        return 0;
+    }
+    elsif ( !exists $r{'species'} ) {
+        return 0;
+    }
 }
 
 sub next {
@@ -22,18 +32,22 @@ sub next {
         $self->curr_row( $self->curr_row + 1 );
     }
 
-    for my $key ( $self->header_keys ) {
-        my $cell = $self->spreadsheet->get_cell( $self->curr_row, $key );
-        next unless ($cell);
-        my $header = $self->get_header($key);
-        my $value  = $cell->value();
-        $row->set_row( $header => $value );
+    if ( $self->validate_headers() ) {
+        for my $key ( $self->header_keys ) {
+            my $cell = $self->spreadsheet->get_cell( $self->curr_row, $key );
+            next unless ($cell);
+            my $header = $self->get_header($key);
+            my $value  = $cell->value();
+            $row->set_row( $header => $value );
+        }
+        $self->curr_row( $self->curr_row + 1 );
+        return $row;
     }
-    $self->curr_row( $self->curr_row + 1 );
-    return $row;
 }
 
 1;
+
+__END__
 
 =head1 NAME
 

@@ -53,11 +53,3 @@ is( $strain_parser->has_no_headers, 0, 'Headers assigned properly' );
 my $h = $strain_parser->get_header(1);
 isnt( $row->get_row($h), ' ', 'Row values are assigned properly' );
 
-#while ( $strain_parser->has_next() ) {
-#    my $row = $strain_parser->next();
-#    isa_ok( $row, 'StockCenter::Parser::Row' );
-#    is( $row->count, 6, "Number of columns is fine" );
-#    foreach my $k ( $row->row_keys ) {
-#        isnt( $row->get_row($k), '', "Cell isn't empty" );
-#    }
-#}
