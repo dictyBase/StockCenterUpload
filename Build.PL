@@ -14,8 +14,8 @@ my $class = Module::Build->subclass(
 
 		sub ACTION_create_history_db {
 			use DBI;
-			my $dbh = DBI->connect("dbi:SQLite:dbname=db/upload.db","","", {});
-			$dbh->do("CREATE TABLE uploaded_file ( id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) NOT NULL, size INT NOT NULL, created_at DATETIME NOT NULL DEFAULT current_timestamp )");
+			my $dbh = DBI->connect("dbi:SQLite:dbname=db/upload.sqlite","","", {});
+			$dbh->do("CREATE TABLE uploaded_file ( id INTEGER PRIMARY KEY AUTOINCREMENT, file VARCHAR(100) NOT NULL, size INT NOT NULL, type VARCHAR(50) NOT NULL, uploaded_on  DATETIME NOT NULL DEFAULT current_timestamp )");
 		}
 	},
 );
