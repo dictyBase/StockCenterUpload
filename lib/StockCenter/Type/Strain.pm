@@ -11,15 +11,34 @@ with 'StockCenter::Parser::Header';
 
 sub validate_headers {
     my ($self) = @_;
-    my %r = reverse $self->headers;
+    my $H      = $self->headers;
+    my %r      = reverse %$H;
+
+    #foreach my $key ( keys %r ) {
+    #    my $val = $r{$key};
+    #    print $key. " => " . $val . "\n";
+    #}
+
     if ( !exists $r{'strain_name'} ) {
+
+        #print "strain_name does not exist";
         return 0;
     }
     elsif ( !exists $r{'genotype'} ) {
+
+        #print "genotype does not exist";
         return 0;
     }
     elsif ( !exists $r{'species'} ) {
+
+        #print "species does not exist";
         return 0;
+    }
+    elsif ( !exists $r{'strain_description'} ) {
+        return 0;
+    }
+    else {
+        return 1;
     }
 }
 

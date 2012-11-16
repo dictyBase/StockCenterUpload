@@ -111,7 +111,7 @@
 							<li>obtained_as</li>
 							<li>obtained_from</li>
 						</ul>
-						<p>You can download a smaple file here</p>
+						<!--<p>You can download a smaple file here</p>-->
 					</div>
 					
 					<div class="tab-pane" id="strain_invent">

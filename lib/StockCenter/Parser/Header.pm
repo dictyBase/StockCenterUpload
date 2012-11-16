@@ -10,11 +10,12 @@ has 'headers' => (
     is      => 'rw',
     isa     => 'HashRef',
     handles => {
-        get_header     => 'get',
-        has_no_headers => 'is_empty',
-        header_count   => 'count',
-        header_keys    => 'keys',
-        set_header     => 'set'
+        get_header      => 'get',
+        has_no_headers  => 'is_empty',
+        header_count    => 'count',
+        header_keys     => 'keys',
+        set_header      => 'set',
+        has_header      => 'exists',
     },
 );
 
@@ -28,6 +29,8 @@ sub parse_headers {
 }
 
 1;
+
+__END__
 
 =head1 NAME
 
