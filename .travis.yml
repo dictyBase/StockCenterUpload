@@ -1,14 +1,15 @@
 language: perl
 perl:
-    - "5.12"
     - "5.10"
 
 branches:
   only:
-    - feature/redesign-arch
+    - feature/travis-ci
 
 before_install:
-    - "cpanm -n DBI DB_File Data::Stag"
+    - "sudo apt-get update"
+    - "sudo apt-get install libdb-dev"
+    - "cpanm DBI Data::Stag"
 
 notifications:
     email: false
