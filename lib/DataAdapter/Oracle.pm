@@ -6,17 +6,9 @@ use warnings;
 
 use Bio::Chado::Schema;
 use Moose;
+use MooseX::Attribute::Dependent;
 use MOD::SGD;
 use MOD::SGD::StockCenterInventoryDual;
-
-#has 'dsn' => (
-#    is            => 'rw',
-#    isa           => 'Str',
-#    required      => 1,
-#    documentation => 'Database DSN',
-#    default       => '',
-#    lazy          => 1
-#);
 
 has [qw/dsn user password/] => (
     is  => 'rw',
@@ -46,7 +38,8 @@ has 'legacy_schema' => (
             $self->legacy_password, $self->attribute
         );
     },
-    lazy => 1
+    lazy       => 1,
+    dependency => All [ 'legacy_dsn', 'legacy_user', 'legacy_password' ]
 );
 
 has [qw/legacy_dsn legacy_user legacy_password/] => (
@@ -59,12 +52,11 @@ has 'schema' => (
     isa     => 'Bio::Chado::Schema',
     default => sub {
         my ($self) = @_;
-        return Bio::Chado::Schema->connect(
-            $self->legacy_dsn, $self->user,
-            $self->password,   $self->attribute
-        );
+        return Bio::Chado::Schema->connect( $self->dsn, $self->user,
+            $self->password, $self->attribute );
     },
-    lazy => 1
+    lazy       => 1,
+    dependency => All [ 'dsn', 'user', 'password' ]
 );
 
 has '_curr_dbs_id' => (
@@ -86,8 +78,6 @@ has '_curr_dbs_id' => (
 
 sub insert_strain {
     my ( $self, $row ) = @_;
-
-    #print $self->dsn."\t".$self->user."\t".$self->password."\n";
     my $strain_data;
     my @headers;
     my $dual_rs
@@ -99,11 +89,10 @@ sub insert_strain {
     for my $key ( $row->row_keys ) {
         push( @headers,      $key );
         push( @$strain_data, $row->get_row($key) );
-
         #print $key. "\t" . $row->get_row($key) . "\n";
     }
-
     #print "\n";
+	#
     if ( scalar @$strain_data > 0 ) {
         my $id = $data->get_column('id');
         unshift @headers,      "id";
@@ -112,11 +101,7 @@ sub insert_strain {
         my $new_dbs_val = $self->_curr_dbs_id;
         $new_dbs_val =~ s/^DBS//x;
         $new_dbs_val = $new_dbs_val + 1;
-
-        #print $self->_curr_dbs_id . "\t" . $new_dbs_val . " *#*#*#*# \n";
         $self->_curr_dbs_id( "DBS" . $new_dbs_val );
-
-        #print $self->_curr_dbs_id . "\n";
 
         $self->legacy_schema->txn_do(
             sub {
@@ -131,7 +116,7 @@ sub insert_strain {
                 $self->legacy_schema->resultset('StockCenter')
                     ->populate( [ [@headers], [@$strain_data] ] );
 
-    #print "Loaded ", scalar(@$strain_data), " strain data to Stock_Center\n";
+    			#print "Loaded ", scalar(@$strain_data), " strain data to Stock_Center\n";
             }
         );
     }
