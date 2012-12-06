@@ -4,20 +4,21 @@ package DataAdapter::Oracle;
 use strict;
 use warnings;
 
+use Bio::Chado::Schema;
 use Moose;
 use MOD::SGD;
 use MOD::SGD::StockCenterInventoryDual;
 
-has 'dsn' => (
-    is            => 'rw',
-    isa           => 'Str',
-    required      => 1,
-    documentation => 'Database DSN',
-    default       => '',
-    lazy          => 1
-);
+#has 'dsn' => (
+#    is            => 'rw',
+#    isa           => 'Str',
+#    required      => 1,
+#    documentation => 'Database DSN',
+#    default       => '',
+#    lazy          => 1
+#);
 
-has [qw/user password/] => (
+has [qw/dsn user password/] => (
     is  => 'rw',
     isa => 'Str',
 );
@@ -32,7 +33,7 @@ has 'attribute' => (
     }
 );
 
-has 'schema' => (
+has 'legacy_schema' => (
     is            => 'rw',
     isa           => 'DBIx::Class::Schema',
     lazy          => 1,
@@ -40,17 +41,57 @@ has 'schema' => (
     required      => 1,
     default       => sub {
         my ($self) = @_;
-        return MOD::SGD->connect( $self->dsn, $self->user, $self->password,
-            $self->attribute );
-    }
+        return MOD::SGD->connect(
+            $self->legacy_dsn,      $self->legacy_user,
+            $self->legacy_password, $self->attribute
+        );
+    },
+    lazy => 1
+);
+
+has [qw/legacy_dsn legacy_user legacy_password/] => (
+    is  => 'rw',
+    isa => 'Str'
+);
+
+has 'schema' => (
+    is      => 'rw',
+    isa     => 'Bio::Chado::Schema',
+    default => sub {
+        my ($self) = @_;
+        return Bio::Chado::Schema->connect(
+            $self->legacy_dsn, $self->user,
+            $self->password,   $self->attribute
+        );
+    },
+    lazy => 1
+);
+
+has '_curr_dbs_id' => (
+    is      => 'rw',
+    isa     => 'Str',
+    default => sub {
+        my ($self) = @_;
+        my $dbxref_rs = $self->schema->resultset('General::Dbxref')->search(
+            { 'db.name' => 'DB:dictyBase', accession => { -like => 'DBS%' } },
+            {   join     => 'db',
+                order_by => { -desc => 'accession' },
+                select   => 'accession'
+            }
+        );
+        return $dbxref_rs->first->accession;
+    },
+    lazy => 1,
 );
 
 sub insert_strain {
     my ( $self, $row ) = @_;
+
+    #print $self->dsn."\t".$self->user."\t".$self->password."\n";
     my $strain_data;
     my @headers;
     my $dual_rs
-        = $self->schema->resultset('StockCenterDual')
+        = $self->legacy_schema->resultset('StockCenterDual')
         ->search( undef,
         { select => ['STOCK_CENTER_SEQ.nextval'], as => ['id'], } );
 
@@ -58,27 +99,39 @@ sub insert_strain {
     for my $key ( $row->row_keys ) {
         push( @headers,      $key );
         push( @$strain_data, $row->get_row($key) );
-        print $key. "\t" . $row->get_row($key) . "\n";
+
+        #print $key. "\t" . $row->get_row($key) . "\n";
     }
-    print "\n";
+
+    #print "\n";
     if ( scalar @$strain_data > 0 ) {
         my $id = $data->get_column('id');
         unshift @headers,      "id";
         unshift @$strain_data, $id;
 
-        #print scalar @$strain_data."\n";
-        #for ( my $i = 0; $i < @$strain_data; $i++ ) {
-        #    print $headers[$i] . "\t";
-        #    print @$strain_data[$i] . "\n";
-        #}
-        #print "\n";
+        my $new_dbs_val = $self->_curr_dbs_id;
+        $new_dbs_val =~ s/^DBS//x;
+        $new_dbs_val = $new_dbs_val + 1;
 
-        $self->schema->txn_do(
+        #print $self->_curr_dbs_id . "\t" . $new_dbs_val . " *#*#*#*# \n";
+        $self->_curr_dbs_id( "DBS" . $new_dbs_val );
+
+        #print $self->_curr_dbs_id . "\n";
+
+        $self->legacy_schema->txn_do(
             sub {
-                $self->schema->resultset('StockCenter')
+                my $dbxref_rs
+                    = $self->schema->resultset('General::Dbxref')
+                    ->create(
+                    { accession => $self->_curr_dbs_id, db_id => '6' } );
+
+                push( @headers,      "dbxref_id" );
+                push( @$strain_data, $dbxref_rs->dbxref_id );
+
+                $self->legacy_schema->resultset('StockCenter')
                     ->populate( [ [@headers], [@$strain_data] ] );
-                print "Loaded ", scalar(@$strain_data),
-                    " strain data to Stock_Center\n";
+
+    #print "Loaded ", scalar(@$strain_data), " strain data to Stock_Center\n";
             }
         );
     }
