@@ -7,7 +7,7 @@ use DataAdapter::SQLite;
 use DataAdapter::Oracle;
 
 BEGIN {
-    $StockCenter::Plugin::Adapter::VERSION = '0.1.1';
+    $StockCenter::Plugin::Adapter::VERSION = '0.1.2';
 }
 
 use Mojo::Base 'Mojolicious::Plugin';
@@ -18,9 +18,12 @@ sub register {
     $app->attr(
         'adp' => sub {
             $adapter->new(
-                dsn      => $config->{dsn},
-                user     => $config->{user},
-                password => $config->{password}
+                legacy_dsn      => $config->{legacy_dsn},
+                legacy_user     => $config->{legacy_user},
+                legacy_password => $config->{legacy_password},
+                dsn             => $config->{dsn},
+                user            => $config->{user},
+                password        => $config->{password}
             );
         }
     );
@@ -30,6 +33,8 @@ sub register {
 }
 
 1;
+
+__END__
 
 =head1 NAME
 

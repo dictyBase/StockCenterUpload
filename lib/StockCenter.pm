@@ -26,18 +26,22 @@ sub startup {
             class     => 'YAML::Tiny'
         }
     );
-	$self->app->log->debug($self->config->{dsn});
-	$self->app->log->debug($self->config->{adapter});
+
+    #$self->app->log->debug( $self->config->{dsn} );
+    #$self->app->log->debug( $self->config->{adapter} );
 
     $self->plugin(
-		'StockCenter::Plugin::Adapter',
-        {   adapter  => $self->config->{adapter},
-            dsn      => $self->config->{dsn},
-            user     => $self->config->{user},
-            password => $self->config->{password}
+        'StockCenter::Plugin::Adapter',
+        {   adapter         => $self->config->{adapter},
+            legacy_dsn      => $self->config->{legacy_dsn},
+            legacy_user     => $self->config->{legacy_user},
+            legacy_password => $self->config->{legacy_password},
+            dsn             => $self->config->{dsn},
+            user            => $self->config->{user},
+            password        => $self->config->{password}
         }
     );
-	$self->plugin('asset_tag_helpers');
+    $self->plugin('asset_tag_helpers');
 
     # Routes
     my $r = $self->routes;
@@ -47,12 +51,13 @@ sub startup {
             $self->redirect_to('new_upload');
         }
     );
-	#$r->get('/uploads')->to('upload#index');
+
+    #$r->get('/uploads')->to('upload#index');
     $r->route( '/uploads/search', format => 'datatable' )->via('get')
         ->to('upload#search');
     $r->get('/uploads')->name('new_upload')->to('upload#new_record');
     $r->post('/uploads')->name('upload')->to('upload#create');
-	$self->app->log->info('All routes set up');
+    $self->app->log->info('All routes set up');
 
     return;
 }

@@ -44,6 +44,7 @@ isnt( $strain_parser->has_no_headers, 0, 'Headers yet to be assigned' );
 $strain_parser->curr_row(0);
 is( $strain_parser->curr_row, 0, '->curr_row works fine' );
 my $row = $strain_parser->next;
+isnt( $strain_parser->validate_headers, 0, 'File has proper headers' );
 isa_ok( $row, 'StockCenter::Parser::Row' );
 is( $row->count,
     $strain_parser->header_count,

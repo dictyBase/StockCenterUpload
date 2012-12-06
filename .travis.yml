@@ -9,7 +9,8 @@ branches:
 before_install:
     - "sudo apt-get update"
     - "sudo apt-get install libdb-dev"
-    - "cpanm -n DBI Data::Stag DB_File"
+    - "cpanm DB_File"
+    - "sudo apt-get install libxml2-dev"
 
 notifications:
     email: false
