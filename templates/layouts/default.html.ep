@@ -14,7 +14,7 @@
 		<%= stylesheet_link_tag 'bootstrap/bootstrap-responsive.min' %>
 		<%= javascript_include_tag 'bootstrap.min' %>
 		
-		<%= stylesheet_link_tag 'smoothness/jquery-ui' %>
+		<%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.17.custom' %>
 				
 		<%= javascript_include_tag 'plupload/js/plupload.full' %>
 		<%= javascript_include_tag 'plupload/js/jquery.ui.plupload/jquery.ui.plupload' %>
@@ -100,8 +100,7 @@
 							<li>strain_description (Strain summary)</li>
 							<li>genotype</li>
 							<li>species</li>
-							<!--<li>strain_summary</li>
-							<li>strain_characteristics</li>-->
+							<!--<li>strain_characteristics</li>-->
 						</ul>
 						<p>Optional:</p>
 						<ul>
