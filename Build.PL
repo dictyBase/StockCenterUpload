@@ -30,6 +30,7 @@ my $builder = $class->new(
     requires => {
         "Bio::Chado::Schema"              => "0.20000",
         "Moose::Util::TypeConstraints"    => "2.0602",
+        "MooseX::Attribute::Dependent"    => "1.1.2",
         "Mojolicious::Plugin::Database"   => "1.05",
         "Mojolicious::Plugin::YamlConfig" => "0.1.5",
         "Spreadsheet::ParseExcel"         => "0.59",
