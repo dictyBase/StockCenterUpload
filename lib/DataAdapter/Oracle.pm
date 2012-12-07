@@ -49,11 +49,12 @@ has [qw/legacy_dsn legacy_user legacy_password/] => (
 
 has 'schema' => (
     is      => 'rw',
-    isa     => 'Bio::Chado::Schema',
+    isa     => 'DBIx::Class::Schema',
     default => sub {
         my ($self) = @_;
-        return Bio::Chado::Schema->connect( $self->dsn, $self->user,
+        my $schema = Bio::Chado::Schema->connect( $self->dsn, $self->user,
             $self->password, $self->attribute );
+        return $self->_transform_schema($schema);
     },
     lazy       => 1,
     dependency => All [ 'dsn', 'user', 'password' ]
@@ -89,10 +90,8 @@ sub insert_strain {
     for my $key ( $row->row_keys ) {
         push( @headers,      $key );
         push( @$strain_data, $row->get_row($key) );
-        #print $key. "\t" . $row->get_row($key) . "\n";
     }
-    #print "\n";
-	#
+
     if ( scalar @$strain_data > 0 ) {
         my $id = $data->get_column('id');
         unshift @headers,      "id";
@@ -109,14 +108,22 @@ sub insert_strain {
                     = $self->schema->resultset('General::Dbxref')
                     ->create(
                     { accession => $self->_curr_dbs_id, db_id => '6' } );
-
                 push( @headers,      "dbxref_id" );
                 push( @$strain_data, $dbxref_rs->dbxref_id );
+
+                my $genotype_rs
+                    = $self->schema->resultset('Genetic::Genotype')->create(
+                    {   uniquename  => $self->_curr_dbs_id,
+                        description => $row->get_row('strain_name')
+                    }
+                    );
+                push( @headers,      "genotype_id" );
+                push( @$strain_data, $genotype_rs->genotype_id );
 
                 $self->legacy_schema->resultset('StockCenter')
                     ->populate( [ [@headers], [@$strain_data] ] );
 
-    			#print "Loaded ", scalar(@$strain_data), " strain data to Stock_Center\n";
+    #print "Loaded ", scalar(@$strain_data), " strain data to Stock_Center\n";
             }
         );
     }
@@ -174,4 +181,35 @@ sub insert {
     return;
 }
 
+sub _transform_schema {
+    my ( $self, $schema ) = @_;
+    my $source = $schema->source('Genetic::Genotype');
+    $source->remove_column('uniquename');
+    $source->add_column(
+        'uniquename' => {
+            data_type   => 'varchar',
+            is_nullable => 0,
+            size        => 1024
+        }
+    );
+    return $schema;
+}
+
 1;
+
+__END__
+
+=head1 NAME
+
+C<DataAdapter::Oracle> - A data adapter to insert data using Oracle engine
+
+=head1 DESCRIPTION
+
+This class connects the the legacy & new schema on Oracle. Its purpose it to insert 4 types of data into the respective tables.
+
+=head1 SYNOPSIS
+
+	my $adapter = $self->app->adapter;
+	$adapter->insert_strain($strain_row);
+
+=over
