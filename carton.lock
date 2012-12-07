@@ -10238,7 +10238,7 @@
          "version" : "0.04"
       },
       "DBIx::Class" : {
-         "dist" : "DBIx-Class-0.08200",
+         "dist" : "DBIx-Class-0.08204",
          "mymeta" : {
             "abstract" : "Extensible and flexible object <-> relational mapper.",
             "author" : [
@@ -10290,7 +10290,7 @@
                },
                "runtime" : {
                   "requires" : {
-                     "Class::Accessor::Grouped" : "0.10002",
+                     "Class::Accessor::Grouped" : "0.10007",
                      "Class::C3::Componentised" : "1.0009",
                      "Class::Inspector" : "1.24",
                      "Class::Method::Modifiers" : "1.06",
@@ -10340,15 +10340,15 @@
                "x_IRC" : "irc://irc.perl.org/#dbix-class",
                "x_MailingList" : "http://lists.scsys.co.uk/cgi-bin/mailman/listinfo/dbix-class"
             },
-            "version" : "0.08200",
+            "version" : "0.08204",
             "x_authority" : "cpan:RIBASUSHI"
          },
          "name" : "DBIx::Class",
-         "pathname" : "F/FR/FREW/DBIx-Class-0.08200.tar.gz",
+         "pathname" : "http:/cpan.metacpan.org/authors/id/G/GE/GETTY/DBIx-Class-0.08204.tar.gz",
          "provides" : {
             "DBIx::Class" : {
                "file" : "DBIx/Class.pm",
-               "version" : "0.08200"
+               "version" : "0.08204"
             },
             "DBIx::Class::AccessorGroup" : {
                "file" : "DBIx/Class/AccessorGroup.pm"
@@ -10626,8 +10626,8 @@
                "version" : "0.1"
             }
          },
-         "target" : "DBIx::Class::Schema",
-         "version" : "0.08200"
+         "target" : "http://cpan.metacpan.org/authors/id/G/GE/GETTY/DBIx-Class-0.08204.tar.gz",
+         "version" : "0.08204"
       },
       "DBIx::Class::DynamicDefault" : {
          "dist" : "DBIx-Class-DynamicDefault-0.04",
