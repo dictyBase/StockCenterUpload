@@ -1,6 +1,7 @@
 language: perl
 perl:
     - "5.10"
+    - "5.12"
 
 branches:
   only:
@@ -9,11 +10,11 @@ branches:
 before_install:
     - "sudo apt-get update"
     - "sudo apt-get install libdb-dev"
-    - "cpanm DBI DB_File"
+    - "cpanm DB_File DBI Data::Stag"
     - "sudo apt-get install libxml2-dev"
 
 notifications:
     email: false
     
 env: 
-    PERL_CPANM_OPT="-v --notest"
+    PERL_CPANM_OPT="--notest"

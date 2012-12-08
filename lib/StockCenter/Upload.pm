@@ -30,31 +30,24 @@ sub create {
     $upload->move_to($temp_file);
     $self->app->log->info('File uploaded to /tmp');
 
-#$upload->move_to($self->app->home->rel_file( "uploads/" . $id . "_" . $filename ) );
+	#$upload->move_to($self->app->home->rel_file( "uploads/" . $id . "_" . $filename ) );
     my $headers = $self->res->headers;
     $headers->content_type('text/plain');
 
     #$headers->location( $self->url_for("uploads/$id")->to_abs );
     my $file = $temp_file->filename;
+ 	#my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
 
- #my $file = $self->app->home->rel_file( "uploads/" . $id . "_" . $filename );
-
- 	
     $self->app->log->debug('Parsing & loading');
     my $parser = StockCenter::Type::Strain->new;
     $parser->file($file);
-	my $adapter = $self->adapter;
+    my $adapter = $self->adapter;
     while ( $parser->has_next() ) {
         my $row = $parser->next();
-		#for my $k ( $row->row_keys ) {
-		#    $self->app->log->debug( $k . " -> " . $row->get_row($k) );
-		#}
-		#$parser->insert($row);
         $adapter->insert_strain($row);
     }
     $self->rendered(201);
     return;
-
 }
 
 sub search {

@@ -20,18 +20,12 @@ sub validate_headers {
     #}
 
     if ( !exists $r{'strain_name'} ) {
-
-        #print "strain_name does not exist";
         return 0;
     }
     elsif ( !exists $r{'genotype'} ) {
-
-        #print "genotype does not exist";
         return 0;
     }
     elsif ( !exists $r{'species'} ) {
-
-        #print "species does not exist";
         return 0;
     }
     elsif ( !exists $r{'strain_description'} ) {
@@ -58,8 +52,10 @@ sub next {
             my $header = $self->get_header($key);
             my $value  = $cell->value();
             $row->set_row( $header => $value );
+			#print $header. "\t" . $value . "\n";
         }
         $self->curr_row( $self->curr_row + 1 );
+		#print "\n";
         return $row;
     }
 }
