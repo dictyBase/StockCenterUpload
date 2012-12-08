@@ -63,7 +63,7 @@ sub get_row {
 
 sub has_next {
     my ($self) = @_;
-    if ( $self->curr_row < $self->row_max ) {
+    if ( $self->curr_row <= $self->row_max ) {
         return 1;
     }
 }
