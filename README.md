@@ -1,12 +1,11 @@
-# Stock Center Upload [![Build Status](https://travis-ci.org/dictyBase/StockCenterUpload.png)](https://travis-ci.org/dictyBase/StockCenterUpload)
-
+# Stock Center Upload [![Build Status](https://secure.travis-ci.org/dictyBase/StockCenterUpload.png?branch=develop)](https://travis-ci.org/dictyBase/StockCenterUpload)
 A Mojolicious web application to upload stock center data; using Plupload.
 
 ### Getting started
 
 
 ### Deployment
-
+* Deployment setup is done using [deploy-task](https://github.com/dictyBase/deploy-task)
 
 ### Testing
 * Modules required for testing the application can be installed using `carton` as

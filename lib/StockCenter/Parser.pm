@@ -70,6 +70,8 @@ sub has_next {
 
 1;
 
+__END__
+
 =head1 NAME
 
 C<StockCenter::Parser> - A C<Moose::Role> for parsing stock center data from *.xls
