@@ -102,6 +102,11 @@ sub insert_strain {
         $new_dbs_val = $new_dbs_val + 1;
         $self->_curr_dbs_id( "DBS" . $new_dbs_val );
 
+        if ( !$row->get_row('systematic_name') ) {
+            push( @headers,      "systematic_name" );
+            push( @$strain_data, $self->_curr_dbs_id );
+        }
+
         $self->legacy_schema->txn_do(
             sub {
                 my $dbxref_rs
